@@ -1,0 +1,28 @@
+ Hello, welcome to the Incredibly Boring Math Game. Right now your setting is set to easy.
+ To change your setting just type the setting you wish to change it to. Your options are: easy, medium, or hard.
+ You rolled a: 5. Now you get to answer a math question.
+ What is 4 + 10?
+ 14 is correct.
+ You rolled a: 5. Now you get to answer a math question.
+ What is 8 - 7?
+ 1 is correct.
+ You rolled a: 8. Now you get to answer a math question.
+ What is 5 + 3?
+ 8 is correct.
+ You rolled a: 6. Now you get to answer a math question.
+ What is 9 + 2?
+ 11 is correct.
+ You rolled a: 6. Now you get to answer a math question.
+ What is 0 + 1?
+ 1 is correct.
+ You rolled a: 5. Now you get to answer a math question.
+ What is 4 + 1?
+ 5 is correct.
+ You rolled a: 3. Now you get to answer a math question.
+ What is 7 - 2?
+ 5 is correct.
+ You rolled a: 2. Now you get to answer a math question.
+ You cannot roll again once you have won, please choose Reset in the help menu.
+ 
+ Hello, welcome to the Incredibly Boring Math Game. Right now your setting is set to easy.
+ To change your setting just type the setting you wish to change it to. Your options are: easy, medium, or hard.
