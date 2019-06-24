@@ -1,0 +1,64 @@
+﻿@model IEnumerable<readygotravel.Models.Search>
+@{
+    ViewBag.Title = "Search History";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="text-center">Search History</h2>
+        <h5 class="text-center">View past searches and results here!</h5>
+        @if (ViewBag.TotalSearches != 0)
+        {
+            <div class="text-right">
+                <!--button to go to clear search history page-->
+                @Html.ActionLink("Clear Search History", "DeleteAll", "Searches", null, new { @class = "btn navbar-btn" })
+
+            </div>
+        }
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    # Travelers
+                </th>
+                <th>
+                    Max Amount
+                </th>
+                <th>
+                    Start Location
+                </th>
+                <th>
+                    End Location
+                </th>
+                <th>
+                    Hotel Star Value
+                </th>
+                <th></th>
+            </tr>
+
+        </table>
+        <!--Used this to reference how many search items are on display-->
+        <input type="hidden" value=0 id="TotalElements">
+        <input type="hidden" value=@ViewBag.TotalSearches id="TotalSearches">
+
+        <!--"load more" button-->
+        <div class="text-center">
+            @Html.TextBox("submited", "Load More", htmlAttributes: new { @class = "btn", type = "submit", style = "max-width:250px; display:none" })
+        </div>
+
+        <hr />
+        @Html.ActionLink("Back to Profile", "Details", "People", null, new { @class = "btn navbar-btn" })
+    </div>
+</div>
+
+    @section PageScripts{
+        <script type="text/javascript" src="~/Scripts/AddMoreSearches.js"></script>
+        <script>addElements()</script>
+
+    }

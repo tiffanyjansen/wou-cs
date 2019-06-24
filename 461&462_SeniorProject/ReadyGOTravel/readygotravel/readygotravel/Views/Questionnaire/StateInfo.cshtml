@@ -1,0 +1,226 @@
+﻿@model readygotravel.Models.State
+
+@{
+    ViewBag.Title = "State Information";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <!--Top Image part of the page.-->
+        <div class="imagePanel">
+            <img src="@Url.Content("~/Content/Images/locationImages/"+Model.Location.Name+".jpg")" style="width:100%; border-radius:3px; margin:-8% 0;" />
+            <div class="imageText">@Model.Location.Name<h1>United States</h1></div>
+        </div>
+        <br />
+        <h6 style="text-align: center">Want to go to @Model.Location.Name? Click a flight or hotel search option below:</h6>
+        <div class="row justify-content-center">
+            <div class="d-flex align-content-center">
+                @Html.ActionLink("Combo", "Create", "Searches", new { id = Model.Location.Name }, new { @class = "btn navbar-btn" })
+                @Html.ActionLink("Flight", "FlightsOnly", "Searches", new { id = Model.Location.Name }, new { @class = "btn navbar-btn" })
+                @Html.ActionLink("Hotel", "HotelsOnly", "Searches", new { id = Model.Location.Name }, new { @class = "btn navbar-btn" })
+            </div>
+        </div>
+        <br />
+        <hr />
+
+        <!--Weather, Temp, Climate, Etc. part of the page.-->
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-center">Temperature and Weather</h3>
+                <table>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th class="text-center">
+                            Spring
+                        </th>
+                        <th class="text-center">
+                            Summer
+                        </th>
+                        <th class="text-center">
+                            Fall
+                        </th>
+                        <th class="text-center">
+                            Winter
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            Average Temperature
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.SpringTemp)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.SummerTemp)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.FallTemp)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.WinterTemp)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            Average Weather
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.Weather.WeatherType)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.Weather1.WeatherType)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.Weather2.WeatherType)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.Weather3.WeatherType)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h3 class="text-center">Climate</h3>
+                <table>
+                    <tr>
+                        <th class="text-center">
+                            Type
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Climates)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClimateType)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <hr />
+        <!--Activities part of the page-->
+        <h3 class="text-center">Unique activity options found in @Model.Location.Name</h3>
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.ActivityItems[0]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/ActivityImages/"+Model.Location.Name+"-1.jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.ActivityItems[1]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/ActivityImages/"+Model.Location.Name+"-2.jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.ActivityItems[2]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/ActivityImages/"+Model.Location.Name+"-3.jpg")" style="width:270px; height:200px" />
+            </div>
+        </div>
+        <hr />
+        <!--Food part of the page.-->
+        <h3 class="text-center">Unique food options found in @Model.Location.Name</h3>
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.foodItems[0]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/FoodsByState/"+Model.Location.Name+"-1.png")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.foodItems[1]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/FoodsByState/"+Model.Location.Name+"-2.png")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.foodItems[2]</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/FoodsByState/"+Model.Location.Name+"-3.png")" style="width:270px; height:200px" />
+            </div>
+        </div>
+        <hr />
+        <!--Geographies of state-->
+        <h3 class="text-center">Geography of @Model.Location.Name</h3>
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[0]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[0]+".jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[1]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[1]+".jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[2]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[2]+".jpg")" style="width:270px; height:200px" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[3]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[3]+".jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[4]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[4]+".jpg")" style="width:270px; height:200px" />
+            </div>
+            <div class="col-sm">
+                <h6 style="text-align: center; margin:0;padding:0;"> @ViewBag.GeoList[5]s</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/GeoImages/"+@ViewBag.GeoList[5]+".jpg")" style="width:270px; height:200px" />
+            </div>
+        </div>
+        <br />
+        <hr />
+
+        <!--Crime Rate part of the page.-->
+        <h3 class="text-center">Crime in @Model.Location.Name</h3>
+        <div class="row">
+            <div class="col-8">
+                <br />
+                <!--Safety text that will depend on crime rate value.-->
+                @if (ViewBag.crimeCheck == 1)
+                {
+                    <div class="bg-primary text-center"><h5 style="color:white">This state is one of the safest!</h5></div>
+                }
+                else if (ViewBag.crimeCheck == 2)
+                {
+                    <div class="bg-success text-center"><h5 style="color:white">This state is pretty safe.</h5></div>
+                }
+                else if (ViewBag.crimeCheck == 3)
+                {
+                    <div class="bg-warning text-center"><h5 style="color:white">This state is somewhat safe.</h5></div>
+                }
+                else
+                {
+                    <div class="bg-danger text-center"><h5 style="color:white">This state is not as safe as the others.</h5></div>
+                }
+                <br />
+                <h4 class="text-center">Violent Crime Rate: @Model.CrimeRate (Reported offenses per 100,000 of the population.)</h4>
+                <br />
+
+                <p><b>Disclaimer:</b> Crime rate information was taken from the website <a href="https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/">statista.com.</a> Our Safety assesments are also relative to the other states.</p>
+            </div>
+
+            <div class="col-4">
+
+                <!--Safety Image that will depend on crime Rate-->
+                @if (ViewBag.crimeCheck == 1)
+                {
+                    <img src="~/Content/Images/CrimeRateRelated/happy.jpg" class="mx-auto d-block" style="width:270px; height:200px;" />
+                }
+                else if (ViewBag.crimeCheck == 2)
+                {
+                    <img src="~/Content/Images/CrimeRateRelated/okay.jpg" class="mx-auto d-block" style="width:270px; height:200px;" />
+                }
+                else if (ViewBag.crimeCheck == 3)
+                {
+                    <img src="~/Content/Images/CrimeRateRelated/indeferent.jpg" class="mx-auto d-block" style="width:270px; height:200px;" />
+                }
+                else
+                {
+                    <img src="~/Content/Images/CrimeRateRelated/unhappy.png" class="mx-auto d-block" style="width:270px; height:200px;" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

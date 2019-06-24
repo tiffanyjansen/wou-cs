@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+<div class="content">
+    <h2>The Oops Page!</h2>
+    <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/ah-ah.gif")" style="width:320px; height:230px;" />
+    <h3>Ah Ah Ah, you didn't say the magic word, Ah Ah Ah!! </h3>
+    <h3>Seems Like You Clicked or Entered Something Invalid, Please Go Back to the Homepage and Try Again. </h3>
+    <h6>@Html.ActionLink("Back to the Homepage", "Index", "Home")</h6>
+</div>
+

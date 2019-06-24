@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Contact Us</h2>
+        <h4>Notice any problems or errors in our site? Please inform us by filling out this form and we will look into it.</h4>
+        @if (ViewBag.Success != null)
+        {
+            if (ViewBag.Success)
+            {
+                <p style="color:limegreen">@ViewBag.submitMessage</p>
+            }
+            else
+            {
+                <p style="color:red">@ViewBag.submitMessage</p>
+            }
+        }
+
+
+        <hr />
+        @using (@Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            /*textbox to get name of person filling this form.*/
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.Label("name", "Full Name")
+                    @Html.TextBox("name", null, htmlAttributes: new { @class = "form-control", type = "text", required = "required" })
+                </div>
+            </div>
+
+            /*textbox to get email of person filling this form.*/
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.Label("email", "Email")
+                    @Html.TextBox("email", null, htmlAttributes: new { @class = "form-control", type = "email", required = "required" })
+                </div>
+            </div>
+
+            /*checkbox to know if person filling this form has an account.*/
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.Label("ownAccount", "Do you have an account?")
+                    @Html.CheckBox("ownAccount", false)
+                </div>
+            </div>
+
+            /*dropdown to know what type of problem the person filling this form has.*/
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="catagory">Problem Catagory</label>
+                    <select class="form-control" id="catagory" name="catagory">
+                        <option value="Unspecified">Unspecified</option>
+                        <option value="Home Page">Home Page</option>
+                        <option value="Account">Account</option>
+                        <option value="Search Results">Search Results</option>
+                        <option value="Flight Information">Flight Information</option>
+                        <option value="Hotel Information">Hotel Information</option>
+                    </select>
+                </div>
+            </div>
+
+            /*textbox to get description of problem by person filling out this form.*/
+            <div class="form-group">
+                <div class="col-md-5">
+                    @Html.Label("description", "Description of Problem")
+                    @Html.TextArea("description", null, new { @class = "form-control", @id = "longText1", rows = "10", required = "required" })
+                </div>
+            </div>
+
+            <br />
+            @Html.TextBox("submited", "Submit", htmlAttributes: new { @class = "btn", type = "submit" })
+            <br />
+
+        }
+    </div>
+</div>

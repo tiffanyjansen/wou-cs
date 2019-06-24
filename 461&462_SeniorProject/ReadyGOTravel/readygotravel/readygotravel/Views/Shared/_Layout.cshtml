@@ -1,0 +1,109 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/jqueryui")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto" rel="stylesheet">
+    <!-- jQuery UI CSS Reference -->
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+    <!-- Required jQuery and jQuery UI Javascript references -->
+    <script src="@Url.Content("~/Scripts/jquery-1.12.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+    <!-- Footer Button Scripts -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+    <link href="/Content/css-summer" type="text/css"  rel="stylesheet" id="season_css">
+    <!-- Update CSS depending on season -->
+    @*<script type="text/javascript">
+            var sysMonth = new Date().getMonth();
+            console.log(sysMonth);
+            if (sysMonth == 0 || sysMonth == 1) {
+                document.write("<link rel=\"stylesheet\" href=\"/Content/css-winter\" type='text/css'/>");
+            }
+            if (sysMonth == 2 || sysMonth == 3 || sysMonth == 4) {
+                document.write('<link rel="stylesheet" href="/Content/css-summer\" type="text/css">');
+            }
+            if (sysMonth == 5 || sysMonth == 6 || sysMonth == 7) {
+                document.write("<link rel=\"stylesheet\" href=\"/Content/css-summer\" type='text/css'/>");
+            }
+            if (sysMonth == 8 || sysMonth == 9 || sysMonth == 10) {
+                document.write("<link rel=\"stylesheet\" href=\"/Content/css-fall\" type='text/css'/>");
+            }
+            if (sysMonth == 11) {
+                document.write("<link rel=\"stylesheet\" href=\"/Content/css-winter\" type='text/css'/>");
+            }
+        </script>*@
+		<!--This is the section that puts our RGT Icon as a website tab-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Icon/favicon-16x16.png">
+    <link rel="manifest" href="/Icon/site.webmanifest">
+    <link rel="mask-icon" href="/Icon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+	
+</head>
+<body>
+    <div class="layout">
+        <!-- A grey horizontal navbar that becomes vertical on small screens -->
+        <nav class="navbar navbar-expand-sm bg-light justify-content-between fixed-top">
+            <img class="logo" onclick="location.href='@Url.Action("Index", "Home")'">
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item navChange">
+                    @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "btn navbar-btn" })
+                </li>
+
+                <!--Top locations dropdown-->
+                <li class="nav-item navChange dropdown">
+                    <a class="btn navbar-btn dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        TOP LOCATIONS
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="Preview">
+                        @Html.ActionLink("United States", "Index", "TopLocations")
+                        @Html.ActionLink("Europe", "TopEuropeanLocations", "TopLocations")
+
+                    </div>
+                </li>
+                <li class="nav-item navChange">
+                    @Html.ActionLink("ABOUT US", "About", "Home", null, new { @class = "btn navbar-btn" })
+                </li>
+                <li class="nav-item navChange">
+                    @Html.ActionLink("CONTACT US", "Contact", "Home", null, new { @class = "btn navbar-btn" })
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </nav>
+    </div>
+    <div class="info-container">
+        <div>
+            @RenderBody()
+        </div>
+        <footer>
+            <hr />
+            <div class="row">                 
+                <div class="col-md-5"></div>
+                <div class="col-md-2" align="center">
+                    <div class="fb-share-button" data-href="http://readygotravel.azurewebsites.net/" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Freadygotravel.azurewebsites.net%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                    <a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a>
+                    <br />
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @RenderSection("scripts", required: false)
+    @RenderSection("PageScripts", required: false)
+</body>
+</html>

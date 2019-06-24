@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ReadyGO Travel - Home";
+}
+<body>
+        <div class="container-fluid">
+            <div class="image-bar">
+                <div class="buttons">
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 display">
+                            <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Questionnaire")'">
+                                Don't know where to go? <br />
+                                We're here to help!
+                            </button>
+                        </div>
+                        <div class="col-md-2 display">
+                            <button type="button" class="btn" onclick="location.href='@Url.Action("Create", "Searches")'">Have your budget <br /> and destination?</button>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p><h2>Welcome to ReadyGO Travel!</h2></p>
+                        <br />
+                        <p>Welcome to ReadyGO Travel. We are here to help you plan your travel budget for your trip! If you have your budget and location already decided, click the button on the right above to find the average prices of flights and hotels. If you have your budget but not quite sure yet on where you want to go, click the button the left above and we'll help you narrow down a location for your getaway vacation!</p>
+                    </div>
+                </div>
+                </div>
+                <div>
+                    <div class="row mission-content-section">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" id="megaTable">
+                            <div class="mx-auto d-block">
+                                <h6>@Html.ActionLink("Mission Statement", "Mission")</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            
+        </div>
+</body>

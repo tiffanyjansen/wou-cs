@@ -1,0 +1,206 @@
+﻿@model readygotravel.Models.ViewModels.SearchDashBoardVM
+@{
+    ViewBag.Title = "Find a hotel that fits in your budget!";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <div id="search-portion">
+            <h2>Enter your hotel details here!</h2>
+            <br />
+            <div class="btn-group">
+                @Html.ActionLink("Flights/Hotels", "Create", "Searches", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Flights Only", "FlightsOnly", "Searches", null, new { @class = "btn btn-default" })
+                @Html.ActionLink("Hotels Only", "HotelsOnly", "Searches", null, new { @class = "btn btn-default disabled" })
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <h4>Travel Dates:</h4>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-lg-12" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", placeholder = "mm/dd/yyyy", id = "from" } })
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-lg-12" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", placeholder = "mm/dd/yyyy", id = "to" } })
+                                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <section class="arriving">
+                        <h4>Arriving At:</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-12">Arriving Continent</label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("EndContinent", new SelectList(ViewBag.Continents, "EndContinent"), htmlAttributes: new { @class = "form-control" })
+                                        <span class="field-validation-valid text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-12">Arriving To</label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("EndCountry", new SelectList(ViewBag.Countries, "EndCountry"), htmlAttributes: new { @class = "form-control" })
+                                        <span class="field-validation-valid text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--The End City/State will Dynamically change depending on the variables using the file Traveling.js-->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label id="EndLabel" class="control-label col-lg-12">Arriving Location</label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("EndCity", new SelectList(ViewBag.EndCities, "EndCity"), htmlAttributes: new { @class = "form-control" })
+                                        <div class="text-danger">@ViewBag.ErrorMessage</div>
+                                        <span class="field-validation-valid text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--The End Airport will dynamically change depending on the variables using Traveling.js-->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-12">Arriving Airport </label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" name="EndAir" id="EndAirport">
+                                            @foreach (var airport in ViewBag.EndAirports)
+                                            {
+                                                <option value=@airport.AirportID>@airport.AirportCode</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <span class="field-validation-valid text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr />
+                    <section class="travel-detials">
+                        <h4>Travel Details:</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaxAmount, htmlAttributes: new { @class = "control-label col-lg-12" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.MaxAmount, new { htmlAttributes = new { @class = "form-control", @min = "1", placeholder = "00.00" } })
+                                        @Html.ValidationMessageFor(model => model.MaxAmount, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.NumTravelers, htmlAttributes: new { @class = "control-label" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.NumTravelers, Enumerable.Range(1, 9).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                                        @Html.ValidationMessageFor(model => model.NumTravelers, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.HotelStarValue, htmlAttributes: new { @class = "control-label col-lg-12" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("HotelStarValue", new SelectList(ViewBag.Stars, "HotelStarValue"), htmlAttributes: new { @class = "form - control" })
+                                    </div>
+                                    <span class="field-validation-valid text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Search" class="btn btn-default" onclick="displayLoading()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h6>@Html.ActionLink("Back to Home", "Index", "Home")</h6>
+                    </div>
+                </div>
+            }            
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/Traveling.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var dateFormat = "mm/dd/yy",
+                from = $("#from")
+                    .datepicker({
+                        minDate: "+1",
+                    })
+                    .on("change", function () {
+                        to.datepicker("option", "minDate", getDate(this));
+                    }),
+                to = $("#to").datepicker({
+                    minDate: "+1",
+                })
+                    .on("change", function () {
+                        from.datepicker("option", "maxDate", getDate(this));
+                    });
+            function getDate(element) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch (error) {
+                    date = null;
+                }
+                return date;
+            }
+        });
+    </script>
+    <!--Loading indicator part.-->
+    <script>
+        //Adds loading indicater and clear content as well.
+        function displayLoading() {
+            //Clear content on page.
+            $("#search-portion").attr("style", "display:none");
+
+            //Add main div holding everything.
+            var holder = $('<div>', { align: 'center' });
+
+            //Add text part.
+            var textPart = $('<h2>').text("Please wait while we process your data. This may take a minute.");
+            holder.append(textPart);
+
+            //Making loading indicator.
+            var loadingPart = $('<div>', { class: 'loadingdiv' });
+            loadingPart.append($('<div>', { class: 'alignBar' }));
+            for (i = 0; i < 5; i++)
+                loadingPart.append($('<span>'));
+            holder.append(loadingPart);
+
+            //add loading indicator to page.
+            $(".jumbotron").append(holder);
+        }
+    </script>
+}

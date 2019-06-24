@@ -1,0 +1,873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B07C148B-5C9C-466F-B3B5-96AAFD391433}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>readygotravel</RootNamespace>
+    <AssemblyName>readygotravel</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BoDi, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ff7cd5ea2744b496, processorArchitecture=MSIL">
+      <HintPath>..\packages\BoDi.1.4.1\lib\net45\BoDi.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Gherkin, Version=6.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gherkin.6.0.0\lib\net45\Gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.14.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.14\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.5\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.10.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.10.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.MVC, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC.3.2.1\lib\net46\Ninject.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.3.0.213\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
+      <HintPath>..\packages\Utf8Json.1.3.7\lib\net45\Utf8Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\ITravelRepo.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Concrete\EFTravelRepo.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FavoritesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\SearchesController.cs" />
+    <Compile Include="Controllers\TopLocationsController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Airport.cs" />
+    <Compile Include="Models\Climate.cs" />
+    <Compile Include="Models\Continent.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\DBContext.cs" />
+    <Compile Include="Models\Geography.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Search.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\UserState.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\CountryCityJS.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\RegisterAccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\SearchDashBoardVM.cs" />
+    <Compile Include="Models\ViewModels\AirportJS.cs" />
+    <Compile Include="Models\ViewModels\TopSearched.cs" />
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\Weather.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\up.sql" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fall.css" />
+    <Content Include="Content\Images\ActivityImages\Alabama-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Alabama-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Alabama-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Alaska-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Alaska-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Alaska-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arizona-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arizona-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arizona-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arkansas-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arkansas-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Arkansas-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\California-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\California-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\California-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Colorado-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Colorado-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Colorado-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Connecticut-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Connecticut-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Connecticut-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Delaware-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Delaware-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Delaware-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Florida-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Florida-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Florida-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Georgia-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Georgia-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Georgia-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Hawaii-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Hawaii-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Hawaii-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Idaho-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Idaho-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Idaho-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Illinois-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Illinois-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Illinois-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Indiana-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Indiana-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Indiana-3.jpg" />
+    <Content Include="Content\Images\ActivityImages\Iowa-1.jpg" />
+    <Content Include="Content\Images\ActivityImages\Iowa-2.jpg" />
+    <Content Include="Content\Images\ActivityImages\Iowa-3.jpg" />
+    <Content Include="Content\Images\Adr.png" />
+    <Content Include="Content\Images\ah-ah.gif" />
+    <Content Include="Content\Images\AlmostGo.png" />
+    <Content Include="Content\Images\autumn.jpg" />
+    <Content Include="Content\Images\bit.jpg" />
+    <Content Include="Content\Images\CanGo.png" />
+    <Content Include="Content\Images\CannotGo.png" />
+    <Content Include="Content\Images\CrimeRateRelated\happy.jpg" />
+    <Content Include="Content\Images\CrimeRateRelated\indeferent.jpg" />
+    <Content Include="Content\Images\CrimeRateRelated\okay.jpg" />
+    <Content Include="Content\Images\CrimeRateRelated\Unhappy.png" />
+    <Content Include="Content\Images\Discord.png" />
+    <Content Include="Content\Images\fall.jpg" />
+    <Content Include="Content\Images\FoodsByState\Alabama-1.png" />
+    <Content Include="Content\Images\FoodsByState\Alabama-2.png" />
+    <Content Include="Content\Images\FoodsByState\Alabama-3.png" />
+    <Content Include="Content\Images\FoodsByState\Alaska-1.png" />
+    <Content Include="Content\Images\FoodsByState\Alaska-2.png" />
+    <Content Include="Content\Images\FoodsByState\Alaska-3.png" />
+    <Content Include="Content\Images\FoodsByState\Arizona-1.png" />
+    <Content Include="Content\Images\FoodsByState\Arizona-2.png" />
+    <Content Include="Content\Images\FoodsByState\Arizona-3.png" />
+    <Content Include="Content\Images\FoodsByState\Arkansas-1.png" />
+    <Content Include="Content\Images\FoodsByState\Arkansas-2.png" />
+    <Content Include="Content\Images\FoodsByState\Arkansas-3.png" />
+    <Content Include="Content\Images\FoodsByState\California-1.png" />
+    <Content Include="Content\Images\FoodsByState\California-2.png" />
+    <Content Include="Content\Images\FoodsByState\California-3.png" />
+    <Content Include="Content\Images\FoodsByState\Colorado-1.png" />
+    <Content Include="Content\Images\FoodsByState\Colorado-2.png" />
+    <Content Include="Content\Images\FoodsByState\Colorado-3.png" />
+    <Content Include="Content\Images\FoodsByState\Connecticut-1.png" />
+    <Content Include="Content\Images\FoodsByState\Connecticut-2.png" />
+    <Content Include="Content\Images\FoodsByState\Connecticut-3.png" />
+    <Content Include="Content\Images\FoodsByState\Delaware-1.png" />
+    <Content Include="Content\Images\FoodsByState\Delaware-2.png" />
+    <Content Include="Content\Images\FoodsByState\Delaware-3.png" />
+    <Content Include="Content\Images\FoodsByState\Florida-1.png" />
+    <Content Include="Content\Images\FoodsByState\Florida-2.png" />
+    <Content Include="Content\Images\FoodsByState\Florida-3.png" />
+    <Content Include="Content\Images\FoodsByState\Georgia-1.png" />
+    <Content Include="Content\Images\FoodsByState\Georgia-2.png" />
+    <Content Include="Content\Images\FoodsByState\Georgia-3.png" />
+    <Content Include="Content\Images\FoodsByState\Hawaii-1.png" />
+    <Content Include="Content\Images\FoodsByState\Hawaii-2.png" />
+    <Content Include="Content\Images\FoodsByState\Hawaii-3.png" />
+    <Content Include="Content\Images\FoodsByState\Idaho-1.png" />
+    <Content Include="Content\Images\FoodsByState\Idaho-2.png" />
+    <Content Include="Content\Images\FoodsByState\Idaho-3.png" />
+    <Content Include="Content\Images\FoodsByState\Illinois-1.png" />
+    <Content Include="Content\Images\FoodsByState\Illinois-2.png" />
+    <Content Include="Content\Images\FoodsByState\Illinois-3.png" />
+    <Content Include="Content\Images\FoodsByState\Indiana-1.png" />
+    <Content Include="Content\Images\FoodsByState\Indiana-2.png" />
+    <Content Include="Content\Images\FoodsByState\Indiana-3.png" />
+    <Content Include="Content\Images\FoodsByState\Iowa-1.png" />
+    <Content Include="Content\Images\FoodsByState\Iowa-2.png" />
+    <Content Include="Content\Images\FoodsByState\Iowa-3.png" />
+    <Content Include="Content\Images\FoodsByState\Kansas-1.png" />
+    <Content Include="Content\Images\FoodsByState\Kansas-2.png" />
+    <Content Include="Content\Images\FoodsByState\Kansas-3.png" />
+    <Content Include="Content\Images\FoodsByState\Kentucky-1.png" />
+    <Content Include="Content\Images\FoodsByState\Kentucky-2.png" />
+    <Content Include="Content\Images\FoodsByState\Kentucky-3.png" />
+    <Content Include="Content\Images\FoodsByState\Louisiana-1.png" />
+    <Content Include="Content\Images\FoodsByState\Louisiana-2.png" />
+    <Content Include="Content\Images\FoodsByState\Louisiana-3.png" />
+    <Content Include="Content\Images\FoodsByState\Maine-1.png" />
+    <Content Include="Content\Images\FoodsByState\Maine-2.png" />
+    <Content Include="Content\Images\FoodsByState\Maine-3.png" />
+    <Content Include="Content\Images\FoodsByState\Maryland-1.png" />
+    <Content Include="Content\Images\FoodsByState\Maryland-2.png" />
+    <Content Include="Content\Images\FoodsByState\Maryland-3.png" />
+    <Content Include="Content\Images\FoodsByState\Massachusetts-1.png" />
+    <Content Include="Content\Images\FoodsByState\Massachusetts-2.png" />
+    <Content Include="Content\Images\FoodsByState\Massachusetts-3.png" />
+    <Content Include="Content\Images\FoodsByState\Michigan-1.png" />
+    <Content Include="Content\Images\FoodsByState\Michigan-2.png" />
+    <Content Include="Content\Images\FoodsByState\Michigan-3.png" />
+    <Content Include="Content\Images\FoodsByState\Minnesota-1.png" />
+    <Content Include="Content\Images\FoodsByState\Minnesota-2.png" />
+    <Content Include="Content\Images\FoodsByState\Minnesota-3.png" />
+    <Content Include="Content\Images\FoodsByState\Mississippi-1.png" />
+    <Content Include="Content\Images\FoodsByState\Mississippi-2.png" />
+    <Content Include="Content\Images\FoodsByState\Mississippi-3.png" />
+    <Content Include="Content\Images\FoodsByState\Missouri-1.png" />
+    <Content Include="Content\Images\FoodsByState\Missouri-2.png" />
+    <Content Include="Content\Images\FoodsByState\Missouri-3.png" />
+    <Content Include="Content\Images\FoodsByState\Montana-1.png" />
+    <Content Include="Content\Images\FoodsByState\Montana-2.png" />
+    <Content Include="Content\Images\FoodsByState\Montana-3.png" />
+    <Content Include="Content\Images\FoodsByState\Nebraska-1.png" />
+    <Content Include="Content\Images\FoodsByState\Nebraska-2.png" />
+    <Content Include="Content\Images\FoodsByState\Nebraska-3.png" />
+    <Content Include="Content\Images\FoodsByState\Nevada-1.png" />
+    <Content Include="Content\Images\FoodsByState\Nevada-2.png" />
+    <Content Include="Content\Images\FoodsByState\Nevada-3.png" />
+    <Content Include="Content\Images\FoodsByState\New Hampshire-1.png" />
+    <Content Include="Content\Images\FoodsByState\New Hampshire-2.png" />
+    <Content Include="Content\Images\FoodsByState\New Hampshire-3.png" />
+    <Content Include="Content\Images\FoodsByState\New Jersey-1.png" />
+    <Content Include="Content\Images\FoodsByState\New Jersey-2.png" />
+    <Content Include="Content\Images\FoodsByState\New Jersey-3.png" />
+    <Content Include="Content\Images\FoodsByState\New Mexico-1.png" />
+    <Content Include="Content\Images\FoodsByState\New Mexico-2.png" />
+    <Content Include="Content\Images\FoodsByState\New Mexico-3.png" />
+    <Content Include="Content\Images\FoodsByState\New York-1.png" />
+    <Content Include="Content\Images\FoodsByState\New York-2.png" />
+    <Content Include="Content\Images\FoodsByState\New York-3.png" />
+    <Content Include="Content\Images\FoodsByState\North Carolina-1.png" />
+    <Content Include="Content\Images\FoodsByState\North Carolina-2.png" />
+    <Content Include="Content\Images\FoodsByState\North Carolina-3.png" />
+    <Content Include="Content\Images\FoodsByState\North Dakota-1.png" />
+    <Content Include="Content\Images\FoodsByState\North Dakota-2.png" />
+    <Content Include="Content\Images\FoodsByState\North Dakota-3.png" />
+    <Content Include="Content\Images\FoodsByState\Ohio-1.png" />
+    <Content Include="Content\Images\FoodsByState\Ohio-2.png" />
+    <Content Include="Content\Images\FoodsByState\Ohio-3.png" />
+    <Content Include="Content\Images\FoodsByState\Oklahoma-1.png" />
+    <Content Include="Content\Images\FoodsByState\Oklahoma-2.png" />
+    <Content Include="Content\Images\FoodsByState\Oklahoma-3.png" />
+    <Content Include="Content\Images\FoodsByState\Oregon-1.png" />
+    <Content Include="Content\Images\FoodsByState\Oregon-2.png" />
+    <Content Include="Content\Images\FoodsByState\Oregon-3.png" />
+    <Content Include="Content\Images\FoodsByState\Pennsylvania-1.png" />
+    <Content Include="Content\Images\FoodsByState\Pennsylvania-2.png" />
+    <Content Include="Content\Images\FoodsByState\Pennsylvania-3.png" />
+    <Content Include="Content\Images\FoodsByState\Rhode Island-1.png" />
+    <Content Include="Content\Images\FoodsByState\Rhode Island-2.png" />
+    <Content Include="Content\Images\FoodsByState\Rhode Island-3.png" />
+    <Content Include="Content\Images\FoodsByState\South Carolina-1.png" />
+    <Content Include="Content\Images\FoodsByState\South Carolina-2.png" />
+    <Content Include="Content\Images\FoodsByState\South Carolina-3.png" />
+    <Content Include="Content\Images\FoodsByState\South Dakota-1.png" />
+    <Content Include="Content\Images\FoodsByState\South Dakota-2.png" />
+    <Content Include="Content\Images\FoodsByState\South Dakota-3.png" />
+    <Content Include="Content\Images\FoodsByState\Tennessee-1.png" />
+    <Content Include="Content\Images\FoodsByState\Tennessee-2.png" />
+    <Content Include="Content\Images\FoodsByState\Tennessee-3.png" />
+    <Content Include="Content\Images\FoodsByState\Texas-1.png" />
+    <Content Include="Content\Images\FoodsByState\Texas-2.png" />
+    <Content Include="Content\Images\FoodsByState\Texas-3.png" />
+    <Content Include="Content\Images\FoodsByState\Utah-1.png" />
+    <Content Include="Content\Images\FoodsByState\Utah-2.png" />
+    <Content Include="Content\Images\FoodsByState\Utah-3.png" />
+    <Content Include="Content\Images\FoodsByState\Vermont-1.png" />
+    <Content Include="Content\Images\FoodsByState\Vermont-2.png" />
+    <Content Include="Content\Images\FoodsByState\Vermont-3.png" />
+    <Content Include="Content\Images\FoodsByState\Virginia-1.png" />
+    <Content Include="Content\Images\FoodsByState\Virginia-2.png" />
+    <Content Include="Content\Images\FoodsByState\Virginia-3.png" />
+    <Content Include="Content\Images\FoodsByState\Washington-1.png" />
+    <Content Include="Content\Images\FoodsByState\Washington-2.png" />
+    <Content Include="Content\Images\FoodsByState\Washington-3.png" />
+    <Content Include="Content\Images\FoodsByState\West Virginia-1.png" />
+    <Content Include="Content\Images\FoodsByState\West Virginia-2.png" />
+    <Content Include="Content\Images\FoodsByState\West Virginia-3.png" />
+    <Content Include="Content\Images\FoodsByState\Wisconsin-1.png" />
+    <Content Include="Content\Images\FoodsByState\Wisconsin-2.png" />
+    <Content Include="Content\Images\FoodsByState\Wisconsin-3.png" />
+    <Content Include="Content\Images\FoodsByState\Wyoming-1.png" />
+    <Content Include="Content\Images\FoodsByState\Wyoming-2.png" />
+    <Content Include="Content\Images\FoodsByState\Wyoming-3.png" />
+    <Content Include="Content\Images\GeoImages\Bay.jpg" />
+    <Content Include="Content\Images\GeoImages\Bayou.jpg" />
+    <Content Include="Content\Images\GeoImages\Canyon.jpg" />
+    <Content Include="Content\Images\GeoImages\Cave.jpg" />
+    <Content Include="Content\Images\GeoImages\Coast.jpg" />
+    <Content Include="Content\Images\GeoImages\Desert.jpg" />
+    <Content Include="Content\Images\GeoImages\Forest.jpg" />
+    <Content Include="Content\Images\GeoImages\Lake.jpg" />
+    <Content Include="Content\Images\GeoImages\Marsh.jpg" />
+    <Content Include="Content\Images\GeoImages\Mountain.jpg" />
+    <Content Include="Content\Images\GeoImages\Plain.jpg" />
+    <Content Include="Content\Images\GeoImages\Plateau.jpg" />
+    <Content Include="Content\Images\GeoImages\River.jpg" />
+    <Content Include="Content\Images\GeoImages\Swamp.jpg" />
+    <Content Include="Content\Images\GeoImages\Valley.jpg" />
+    <Content Include="Content\Images\Hec.png" />
+    <Content Include="Content\Images\landscape-666927_1920.jpg" />
+    <Content Include="Content\Images\locationImages\alabama.jpg" />
+    <Content Include="Content\Images\locationImages\alaska.jpg" />
+    <Content Include="Content\Images\locationImages\arizona.jpg" />
+    <Content Include="Content\Images\locationImages\arkansas.jpg" />
+    <Content Include="Content\Images\locationImages\california.jpg" />
+    <Content Include="Content\Images\locationImages\colorado.jpg" />
+    <Content Include="Content\Images\locationImages\connecticut.jpg" />
+    <Content Include="Content\Images\locationImages\delaware.jpg" />
+    <Content Include="Content\Images\locationImages\florida.jpg" />
+    <Content Include="Content\Images\locationImages\georgia.jpg" />
+    <Content Include="Content\Images\locationImages\hawaii.jpg" />
+    <Content Include="Content\Images\locationImages\idaho.jpg" />
+    <Content Include="Content\Images\locationImages\illinois.jpg" />
+    <Content Include="Content\Images\locationImages\indiana.jpg" />
+    <Content Include="Content\Images\locationImages\iowa.jpg" />
+    <Content Include="Content\Images\locationImages\kansas.jpg" />
+    <Content Include="Content\Images\locationImages\kentucky.jpg" />
+    <Content Include="Content\Images\locationImages\louisiana.jpg" />
+    <Content Include="Content\Images\locationImages\maine.jpg" />
+    <Content Include="Content\Images\locationImages\maryland.jpg" />
+    <Content Include="Content\Images\locationImages\massachusetts.jpg" />
+    <Content Include="Content\Images\locationImages\michigan.jpg" />
+    <Content Include="Content\Images\locationImages\minnesota.jpg" />
+    <Content Include="Content\Images\locationImages\mississippi.jpg" />
+    <Content Include="Content\Images\locationImages\missouri.jpg" />
+    <Content Include="Content\Images\locationImages\montana.jpg" />
+    <Content Include="Content\Images\locationImages\nebraska.jpg" />
+    <Content Include="Content\Images\locationImages\nevada.jpg" />
+    <Content Include="Content\Images\locationImages\new hampshire.jpg" />
+    <Content Include="Content\Images\locationImages\new jersey.jpg" />
+    <Content Include="Content\Images\locationImages\new mexico.jpg" />
+    <Content Include="Content\Images\locationImages\new york.jpg" />
+    <Content Include="Content\Images\locationImages\north carolina.jpg" />
+    <Content Include="Content\Images\locationImages\north dakota.jpg" />
+    <Content Include="Content\Images\locationImages\ohio.jpg" />
+    <Content Include="Content\Images\locationImages\oklahoma.jpg" />
+    <Content Include="Content\Images\locationImages\oregon.jpg" />
+    <Content Include="Content\Images\locationImages\pennsylvania.jpg" />
+    <Content Include="Content\Images\locationImages\rhode island.jpg" />
+    <Content Include="Content\Images\locationImages\south carolina.jpg" />
+    <Content Include="Content\Images\locationImages\south dakota.jpg" />
+    <Content Include="Content\Images\locationImages\tennessee.jpg" />
+    <Content Include="Content\Images\locationImages\texas.jpg" />
+    <Content Include="Content\Images\locationImages\utah.jpg" />
+    <Content Include="Content\Images\locationImages\vermont.jpg" />
+    <Content Include="Content\Images\locationImages\virginia.jpg" />
+    <Content Include="Content\Images\locationImages\washington.jpg" />
+    <Content Include="Content\Images\locationImages\west virginia.jpg" />
+    <Content Include="Content\Images\locationImages\wisconsin.jpg" />
+    <Content Include="Content\Images\locationImages\wyoming.jpg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logo2.png" />
+    <Content Include="Content\Images\Logos\fall_logo.png" />
+    <Content Include="Content\Images\Logos\spring_logo.png" />
+    <Content Include="Content\Images\Logos\summer_logo.png" />
+    <Content Include="Content\Images\Logos\summer_logo_large.png" />
+    <Content Include="Content\Images\Logos\winter_logo.png" />
+    <Content Include="Content\Images\luggage-2020548_1920.jpg" />
+    <Content Include="Content\Images\Microsoft.png" />
+    <Content Include="Content\Images\NoFly.png" />
+    <Content Include="Content\Images\no_vacancy.jpg" />
+    <Content Include="Content\Images\readygotravel.png" />
+    <Content Include="Content\Images\Slack.png" />
+    <Content Include="Content\Images\Sta.png" />
+    <Content Include="Content\Images\summer.jpg" />
+    <Content Include="Content\Images\Tif.png" />
+    <Content Include="Content\Images\1-2Star.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\1-4Star.PNG" />
+    <Content Include="Content\Images\3-4Star.PNG" />
+    <Content Include="Content\Images\Adr.png" />
+    <Content Include="Content\Images\AlmostGo.png" />
+    <Content Include="Content\Images\Boston.jpg" />
+    <Content Include="Content\Images\CanGo.png" />
+    <Content Include="Content\Images\CannotGo.png" />
+    <Content Include="Content\Images\Chicago.jpg" />
+    <Content Include="Content\Images\D-C.jpg" />
+    <Content Include="Content\Images\Glacier.jpg" />
+    <Content Include="Content\Images\Grand-Canyon.jpg" />
+    <Content Include="Content\Images\Hec.png" />
+    <Content Include="Content\Images\Lake-Tahoe.jpg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\Maui.jpg" />
+    <Content Include="Content\Images\New-Orleans.jpg" />
+    <Content Include="Content\Images\New-York.jpg" />
+    <Content Include="Content\Images\readygotravel.png" />
+    <Content Include="Content\Images\San-Fran.jpg" />
+    <Content Include="Content\Images\Seattle.jpg" />
+    <Content Include="Content\Images\Sta.png" />
+    <Content Include="Content\Images\Star.PNG" />
+    <Content Include="Content\Images\Tif.png" />
+    <Content Include="Content\Images\Top.png" />
+    <Content Include="Content\Images\topLocationImages\10_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\10_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\10_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\11_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\11_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\11_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\12_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\12_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\12_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\1_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\1_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\1_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\2_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\2_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\2_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\3_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\3_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\3_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\4_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\4_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\4_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\5_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\5_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\5_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\6_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\6_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\6_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\7_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\7_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\7_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\8_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\8_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\8_3.jpg" />
+    <Content Include="Content\Images\topLocationImages\9_1.jpg" />
+    <Content Include="Content\Images\topLocationImages\9_2.jpg" />
+    <Content Include="Content\Images\topLocationImages\9_3.jpg" />
+    <Content Include="Content\Images\UserError.png" />
+    <Content Include="Content\Images\wild-flowers-571940_1920.jpg" />
+    <Content Include="Content\Images\wou.jpg" />
+    <Content Include="Content\Images\Yellowstone.jpg" />
+    <Content Include="Content\spring.css" />
+    <Content Include="Content\summer.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\winter.css" />
+    <Content Include="Icon\android-chrome-192x192.png" />
+    <Content Include="Icon\android-chrome-256x256.png" />
+    <Content Include="Icon\apple-touch-icon.png" />
+    <Content Include="Icon\browserconfig.xml" />
+    <Content Include="Icon\favicon-16x16.png" />
+    <Content Include="Icon\favicon-32x32.png" />
+    <Content Include="Icon\favicon.ico" />
+    <Content Include="Icon\mstile-150x150.png" />
+    <Content Include="Scripts\AddMoreSearches.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Icon\site.webmanifest" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\Tests\SearchHistoryTests.js" />
+    <Content Include="Scripts\Tests\Test.html" />
+    <Content Include="Scripts\Tests\QUnit.css" />
+    <Content Include="Scripts\Tests\QUnit.js" />
+    <Content Include="Scripts\Tests\TravelingTests.js" />
+    <Content Include="Scripts\TopLocations.js" />
+    <Content Include="Scripts\Traveling.js" />
+    <Content Include="Scripts\Disclaimer.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\readygotravel - Web Deploy.pubxml" />
+    <Content Include="Scripts\FavoritesOverlay.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\TopSearches.js" />
+    <Content Include="Scripts\umd\flights.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\update_css.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Searches\Create.cshtml" />
+    <Content Include="Views\Searches\Delete.cshtml" />
+    <Content Include="Views\Searches\Edit.cshtml" />
+    <Content Include="Views\Searches\Index.cshtml" />
+    <Content Include="Views\Searches\Result.cshtml" />
+    <Content Include="Views\Home\StyleGuide.cshtml" />
+    <Content Include="Views\People\Details.cshtml" />
+    <Content Include="Views\People\Edit.cshtml" />
+    <Content Include="Views\Home\Mission.cshtml" />
+    <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\TopLocations\Index.cshtml" />
+    <Content Include="Views\Searches\UserSearches.cshtml" />
+    <Content Include="Views\Searches\DeleteAll.cshtml" />
+    <Content Include="Views\TopLocations\Display.cshtml" />
+    <Content Include="Views\Questionnaire\StateInfo.cshtml" />
+    <Content Include="Views\Favorites\Create.cshtml" />
+    <Content Include="Views\Favorites\Delete.cshtml" />
+    <Content Include="Views\Favorites\Details.cshtml" />
+    <Content Include="Views\Favorites\Edit.cshtml" />
+    <Content Include="Views\Favorites\Index.cshtml" />
+    <Content Include="Views\Searches\FlightsOnly.cshtml" />
+    <Content Include="Views\Searches\HotelsOnly.cshtml" />
+    <Content Include="Views\TopLocations\TopEuropeanLocations.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\Error400.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60912</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60912/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

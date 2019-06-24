@@ -1,0 +1,61 @@
+﻿@model IEnumerable<readygotravel.Models.State>
+@{
+    ViewBag.Title = "Find the perfect place for your vacation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <div>
+            <form method="get" form action="/Questionnaire/Index">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Let's find the perfect state to visit!</h2><p><h6>Currently, this questionnaire only applies to the United States of America mainland and Alaska/Hawaii.</h6></p><hr />
+                        <div class="form-group">
+                            <label for="season">Which season will you be travelling during?</label><br />
+                            @Html.DropDownList("season", (IEnumerable <SelectListItem>)ViewBag.SeasonList)
+                            <br /><br />
+                            <label for="weather">What type of weather would you like?</label><br />
+                           @Html.DropDownList("weather", (IEnumerable <SelectListItem>)ViewBag.WeatherList)
+
+                            <br /><br />
+                            <label for="temperature">What type of daily temperature would you like?</label><br />
+                             @Html.DropDownList("temperature", (IEnumerable <SelectListItem>)ViewBag.TemperatureList)
+                             <br /><br />
+                            <label for="climate">What type of daily climate would you like?</label><br />
+                            @Html.DropDownList("climate", (IEnumerable <SelectListItem>)ViewBag.ClimateList)
+                            <br /><br />
+                            <label for="geography">What type of daily geography would you like?</label><br />
+                            @Html.DropDownList("geography", (IEnumerable <SelectListItem>)ViewBag.GeographyList)
+                            <br /><br />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Submit" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                    @if (ViewBag.Result != null || ViewBag.Message != null)
+                    {
+                    <div class="col-md-6">
+                        <h3>Results</h3><hr />
+                        <p>@ViewBag.Message</p>
+
+                        @foreach (var item in Model)
+                        {
+                            <ul>
+                                <li> @Html.ActionLink(item.Location.Name, "StateInfo", new { stateID = item.LocationID })</li>
+                            </ul>
+                        }
+                        <p>***Temperature and weather data is taken from <a href="https://www.usclimatedata.com/climate/united-states/us" target="_blank">US Climate Data</a> and <a href="https://weatherspark.com/" target="_blank">Weather Spark</a>, based upon the first city selection from each state from US Climate Data. Larger states will have a greater variety of temperature and weather ranges depending upon the season and location, so please make sure to check the specifics of the city you eventually decide on visiting. Weather Spark is a great reference for that information!</p>
+                         
+                          <p>Geography data has been taken from <a href="https://www.worldatlas.com/webimage/countrys/namerica/us.htm" target="_blank">World Atlas</a> and climate data from <a href="http://textbooks.wmisd.org/Downloads/6th/6thWorldFull.pdf" target="_blank">World Geography</a>.***</p>
+                    </div>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

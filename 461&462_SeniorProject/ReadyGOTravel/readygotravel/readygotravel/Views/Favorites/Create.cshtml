@@ -1,0 +1,29 @@
+﻿@model readygotravel.Models.UserState
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content">
+
+    <h2>Confirmation</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Do you want to add @ViewBag.locationName to your favorites?</h4>
+        <hr />
+        <input type="hidden" name="LocationID" value=@ViewBag.locationID />
+        <input type="submit" value="Add" class="btn btn-default" />
+    </div>
+
+    }
+    <!--
+    <div>
+        @Html.ActionLink("Favorites List", "Index")
+    </div>-->
+</div>
+
+

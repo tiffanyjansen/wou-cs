@@ -1,0 +1,50 @@
+﻿@model IEnumerable<readygotravel.Models.ViewModels.TopSearched>
+
+@{
+    ViewBag.Title = "Top Searched Locations";
+}
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h2>Top Searched Locations</h2>
+            <hr />
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndState)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimesSearched)
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.EndState)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.TimesSearched)
+                        </td>
+                    </tr>
+
+                }
+            </table>
+            <!--Used this to reference how many search items are on display-->
+            <input type="hidden" value=9 id="NumStates">
+            <input type="hidden" value=@ViewBag.NumSearches id="TotalNumStates">
+
+            <!--"load more" button-->
+            <div class="text-center">
+                <input id="AddMore" class="btn btn-default" type="submit" value="Load More" onclick="addElements()" style="visibility: visible;" />
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+@section PageScripts{
+    <script type="text/javascript" src="~/Scripts/TopSearches.js"></script>
+}

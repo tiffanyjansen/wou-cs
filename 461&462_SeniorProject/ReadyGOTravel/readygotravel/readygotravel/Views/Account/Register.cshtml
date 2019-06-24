@@ -1,0 +1,72 @@
+﻿@model readygotravel.Models.ViewModels.RegisterAccountViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <h2>Create An Account</h2>
+        </div>
+        <hr />
+        <div class="row">
+            <h4 style="color: red;">@ViewBag.Error</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <!--The Person Attributes-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <!--The User Attributes-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-8">
+                            @Html.PasswordFor(m => m.User.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.User.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-8">
+                            @Html.PasswordFor(m => m.User.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-light" value="Register" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="container">
+            <h5>Confidentiality Notice:</h5>
+            <p>ReadyGo-Travel tries its best to maintain confidentiality of users who have an account on our website. All relevant confidential information provided by a user, including information such as email, name, last name, and etc., are protected under our agreement and will not be disclosed to any third party. All personal information provided to us are only stored for identification purposes. Exemptions may include requests by courts or government authorities to provide any information stored/managed by ReadyGo-Travel or law/regulation that require us to provide our data. Any third parties involved in handling/managing our user data in any way will be subjected to the same terms and disclosure of confidential information by said party will be held liable for a breach in the agreement.</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

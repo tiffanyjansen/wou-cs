@@ -1,0 +1,61 @@
+﻿@model IEnumerable<readygotravel.Models.UserState>
+
+@{
+    ViewBag.Title = "My Favorites";
+}
+<div class="container">
+    <div class="jumbotron">
+        <br />
+        <h2 class="text-center">My favorites</h2>
+        <h5 class="text-center">Do you want to add locations to your favorites? Then make a search @Html.ActionLink("here", "Create", "Searches") and then add it.</h5>
+        <hr />
+        <table class="table">
+            <tr>
+
+                <th>
+                    Country Name
+                </th>
+                <th>
+                    U.S. State or International City
+                </th>
+                <th>
+                    Search
+                </th>
+                <th>State Details</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Country.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Combo", "Create", "Searches", new { id = item.Location.Name }, new { @class = "btn navbar-btn" })
+                        @Html.ActionLink("Flight", "FlightsOnly", "Searches", new { id = item.Location.Name }, new { @class = "btn navbar-btn" })
+                        @Html.ActionLink("Hotel", "HotelsOnly", "Searches", new { id = item.Location.Name }, new { @class = "btn navbar-btn" })
+                    </td>
+                    <td>
+                        @if (item.International != null && item.Location.State)
+                        {
+                            @Html.ActionLink("Info", "StateInfo","Questionnaire", new { stateID = item.Location.LocationID }, new { @class = "btn navbar-btn" })
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UserStateID }, new { @class = "btn navbar-btn" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <hr />
+        <p><b>Disclaimer:</b> Information (State Details) pages are currently only available for U.S. states.</p>
+        @Html.ActionLink("Back to Profile", "Details", "People", null, new { @class = "btn navbar-btn" })
+    </div>
+
+</div>
+

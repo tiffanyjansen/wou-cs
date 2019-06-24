@@ -1,0 +1,446 @@
+﻿@model  readygotravel.Models.Result
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+﻿@{
+    ViewBag.Title = "Can You Afford It?";
+}
+
+<div class="content">
+    @{
+        @**Situation where the user has the budget to go**@
+        if (ViewBag.Result == 0)
+        {
+            <h2>Your Results are in...</h2>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/CanGo.png")" style="width:210px; height:170px" />
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message @string.Format("{0:C}", ViewBag.Total)</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message2 @string.Format("{0:C}", ViewBag.Remaining)</h4>
+                </div>
+            </div>
+        }
+        @**Situation where the user is just a little short on budget**@
+        else if (ViewBag.Result == 1)
+        {
+            <h2>Your Results are in...</h2>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/AlmostGo.png")" style="width:210px; height:170px" class="img-responsive" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message @string.Format("{0:C}", ViewBag.Remaining)</h4>
+                </div>
+            </div>
+        }
+        @**Situation where the user does not have the budget necessary**@
+        else if (ViewBag.Result == 2)
+        {
+            <h2>Your Results are in...</h2>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/CannotGo.png")" align="middle" style="width:210px; height:170px" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message @string.Format("{0:C}", ViewBag.Remaining)</h4>
+                </div>
+            </div>
+        }
+        @**Situation where the user chose the same start and ending location (flight API error)**@
+        else if (ViewBag.Result == 3)
+        {
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/UserError.png")" style="width:210px; height:170px" />
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message2</h4>
+                </div>
+            </div>
+            <input class="btn btn-default" type="button" value="Search Again" onclick="location.href='@Url.Action("Create", "Searches")'" />
+        }
+        else if (ViewBag.Result == 5)
+        {
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/no_vacancy.jpg")" style="width:210px; height:170px" />
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="mx-auto d-block">
+                    <br />
+                    <h4>@ViewBag.Message</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message2</h4>
+                </div>
+            </div>
+            <input class="btn btn-default" type="button" value="Search Again" onclick="location.href='@Url.Action("Create", "Searches")'" />
+        }
+        @**Situation where the user requested flight information and there were no flights that matched that criteria**@
+        else
+        {
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <img src="@Url.Content("~/Content/Images/NoFly.png")" style="width:210px; height:170px" />
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block">
+                    <h4>@ViewBag.Message2</h4>
+                </div>
+            </div>
+            <input class="btn btn-default" type="button" value="Search Again" onclick="location.href='@Url.Action("Create", "Searches")'" />
+        }
+    }
+</div>
+@{
+    @**If there are no errors in the flight results, then break down the budget**@
+    if (ViewBag.Result != 3 && ViewBag.Result != 4 && ViewBag.Result != 5)
+    {
+<div class="content">
+    <h2>Budget Breakdown for Travel During:</h2>
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <h5>@Model.Search.StartDate.Month/@Model.Search.StartDate.Day/@Model.Search.StartDate.Year  - @Model.Search.EndDate.Month/@Model.Search.EndDate.Day/@Model.Search.EndDate.Year</h5>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                <h6>USD</h6>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+               @if(ViewBag.Exchange != 1)
+               {
+                    <h6>@ViewBag.Currency</h6>
+               }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                <h6>Total Budget Allocated:&nbsp;</h6><h6 class="text-success">@string.Format("{0:C}", ViewBag.Total + ViewBag.Remaining)</h6>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+                @if(ViewBag.Exchange != 1)
+                {
+                    <h6 class="text-success">@ViewBag.Symbol@((Model.Search.MaxAmount * ViewBag.Exchange).ToString("F2"))</h6>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @*This statement changes the display Results of Flight type based on Economy vs. Business*@
+                @if (Model.Search.FlightType == null)
+                {
+                    <h6>You did not search for a flight.</h6>
+                }
+                else if (Model.Search.FlightType == "E")
+                {
+                    <h6>Economy Flight Cost from @Html.DisplayFor(m => m.Search.Airport.Location.Name) (@Html.DisplayFor(m => m.Search.Airport.AirportCode)) to @Html.DisplayFor(m => m.Search.Airport1.Location.Name) (@Html.DisplayFor(m => m.Search.Airport1.AirportCode)):&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFlightAmount)</h6>
+                }
+                else
+                {
+                    <h6>Business Flight Cost from @Html.DisplayFor(m => m.Search.Airport.Location.Name) (@Html.DisplayFor(m => m.Search.Airport.AirportCode)) to @Html.DisplayFor(m => m.Search.Airport1.Location.Name) (@Html.DisplayFor(m => m.Search.Airport1.AirportCode)):&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFlightAmount)</h6>
+                }
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+                @if (ViewBag.Exchange != 1)
+                {
+                    if (Model.Search.FlightType != null)
+                    {
+                        <h6 class="text-danger"> -@ViewBag.Symbol@((Model.AvgFlightAmount * ViewBag.Exchange).ToString("F2"))</h6>
+                    }                    
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @if (Model.AvgHotelAmount == null)
+                {
+                    <h6>You did not search for a hotel.</h6>
+                }
+                @*Check if there is an average hotel amount.*@
+                else if (Model.AvgHotelAmount != (decimal)0.00)
+                {
+                    @*Check if either the number of people is 1 or if the number of days is 1*@
+                    if (Model.Search.NumTravelers == 1 || ViewBag.NumDays == 1)
+                    {
+                        @*If the number of people and the number of days is 1*@
+                        if (Model.Search.NumTravelers == 1 && ViewBag.NumDays == 1)
+                        {
+                            <h6>Hotel Cost for @Html.DisplayFor(m => m.Search.NumTravelers) person staying for @ViewBag.NumDays day will be around:&nbsp;</h6><h6 p class="text-danger"> -$@Html.DisplayFor(m => m.AvgHotelAmount)</h6>
+                        }
+                        @*If the number of people is 1*@
+                        else if (Model.Search.NumTravelers == 1)
+                        {
+                            <h6>Hotel Cost for @Html.DisplayFor(m => m.Search.NumTravelers) person staying for @ViewBag.NumDays days will be around:&nbsp;</h6><h6 p class="text-danger"> -$@Html.DisplayFor(m => m.AvgHotelAmount)</h6>
+                        }
+                        @*If the number of days is 1*@
+                        else
+                        {
+                            <h6>Hotel Cost for @Html.DisplayFor(m => m.Search.NumTravelers) people staying for @ViewBag.NumDays day will be around:&nbsp;</h6><h6 p class="text-danger"> -$@Html.DisplayFor(m => m.AvgHotelAmount)</h6>
+                        }
+                    }
+                    @*If neither of them are 1.*@
+                    else
+                    {
+                        <h6>Hotel Cost for @Html.DisplayFor(m => m.Search.NumTravelers) people staying for @ViewBag.NumDays days will be around:&nbsp;</h6><h6 p class="text-danger"> -$@Html.DisplayFor(m => m.AvgHotelAmount)</h6>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+                @if (ViewBag.Exchange != 1)
+                {
+                    if (Model.AvgHotelAmount != null)
+                    {
+                        <h6 class="text-danger">-@ViewBag.Symbol@((Model.AvgHotelAmount * ViewBag.Exchange).ToString("F2")) </h6>
+                    }                    
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @*If the end airport is not international, include the food prices.*@
+                @if (Model.Search.Airport1.Location.State)
+                {
+                    @*Check if there is only 1 person, or if they are staying for only 1 day*@
+                    if (Model.Search.NumTravelers == 1 || ViewBag.NumDays == 1)
+                    {
+                        @*If they are both 1.*@
+                        if (Model.Search.NumTravelers == 1 && ViewBag.NumDays == 1)
+                        {
+                            <h6>Food Cost for @Html.DisplayFor(m => m.Search.NumTravelers) person over @ViewBag.NumDays day will be around:&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFoodCost)</h6>
+                        }
+                        @*If only the number of people is 1.*@
+                        else if (Model.Search.NumTravelers == 1)
+                        {
+                            <h6>Food Cost for @Html.DisplayFor(m => m.Search.NumTravelers) person over @ViewBag.NumDays days will be around:&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFoodCost)</h6>
+                        }
+                        @*If only the number of days is 1.*@
+                        else
+                        {
+                            <h6>Food Cost for @Html.DisplayFor(m => m.Search.NumTravelers) people over @ViewBag.NumDays day will be around:&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFoodCost)</h6>
+                        }
+                    }
+                    @*If they are both greater than 1.*@
+                    else
+                    {
+                        <h6>Food Cost for @Html.DisplayFor(m => m.Search.NumTravelers) people over @ViewBag.NumDays days will be around:&nbsp;</h6><h6 class="text-danger"> -$@Html.DisplayFor(m => m.AvgFoodCost)</h6>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+                @if (Model.Search.Airport1.Location.State)
+                {
+                    if(ViewBag.Exchange != 1)
+                    {                        
+                        <h6 class="text-danger">-@ViewBag.Symbol@((Model.AvgFoodCost * ViewBag.Exchange).ToString("F2"))</h6>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @if (ViewBag.Result >= 1)
+                {
+                    <h6>This is how much additional funds you would need: &nbsp;</h6><h6 class="text-danger">=@string.Format("{0:C}", ViewBag.Remaining) </h6>
+                }
+                else
+                {
+                    <h6>This is your remaining budget:&nbsp;</h6><h6 class="text-success">=@string.Format("{0:C}", ViewBag.Remaining) </h6>
+                }
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="d-flex justify-content-end">
+                @if(ViewBag.Exchange != 1)
+                {
+                    if (ViewBag.Result >= 1)
+                    {
+                        <h6 class="text-danger">=@ViewBag.Symbol@((ViewBag.Remaining * ViewBag.Exchange).ToString("F2")) </h6>
+                    }
+                    else
+                    {
+                        <h6 class="text-success">=@ViewBag.Symbol@((ViewBag.Remaining * ViewBag.Exchange).ToString("F2")) </h6>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @if (Model.AvgHotelAmount == null)
+                {
+
+                }
+                else if (Model.AvgHotelAmount != (decimal)0.00)
+                {
+                    <h6>The average hotel star value is: @Html.DisplayFor(m => m.AvgHotelStar)</h6>
+                }
+
+                else if (Model.AvgHotelAmount == (decimal)0.00)
+                {
+                    <h6>There were no hotels found given your search parameters.</h6>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @if (Model.AvgHotelAmount != (decimal)0.00)
+                {
+
+                    for (int i = 0; i < ViewBag.Stars; i++)
+                    {
+                        <img src="@Url.Content("~/Content/Images/Star.PNG")" align="middle" style="width:30px; height:20px" />
+
+                    }
+                    if (ViewBag.Decimal == (decimal)0.25)
+                    {
+                        <img src="@Url.Content("~/Content/Images/1-4Star.PNG")" align="middle" style="width:30px; height:20px" />
+                    }
+                    if (ViewBag.Decimal == (decimal)0.5)
+                    {
+                        <img src="@Url.Content("~/Content/Images/1-2Star.PNG")" align="middle" style="width:30px; height:20px" />
+                    }
+                    if (ViewBag.Decimal == (decimal)0.75)
+                    {
+                        <img src="@Url.Content("~/Content/Images/3-4Star.PNG")" align="middle" style="width:30px; height:20px" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="d-flex justify-content-end">
+                @if(ViewBag.ExchangeStart != 1)
+                {
+                <h6>The currency exchange from @ViewBag.Currency is: @((ViewBag.ExchangeStart).ToString("F2")) </h6>
+                }
+            </div>
+        </div>
+    </div>
+    <input class="btn btn-default" type="button" value="Search Again" onclick="location.href='@Url.Action("Create", "Searches")'" />
+
+</div>
+
+            @*display button to add location to favorites if logged in and if not already in favoirtes.*@
+            if (Request.IsAuthenticated && !ViewBag.HasFavorite)
+            {
+            <div class="content">
+                <div class="row text-right">
+                    <div class="col-md-10">
+                        <hr />
+
+                        <h5>Do you like @Model.Search.Airport1.Location.Name ? Then add it to your favorites! </h5>
+
+                        <hr />
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        @Html.ActionLink("Add Favorite", "Create", "Favorites", new { locationID = Model.Search.Airport1.Location.LocationID }, new { @class = "btn navbar-btn"})
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div class="content">
+                <h2 style="font-size:large;">Disclaimer</h2>
+                <div class="row">
+                    <p style="font-size: smaller">
+                        Here at ReadyGO-Travel, our goal is to assist you with balancing your travel budget while
+                        providing you with the best hotel and flight costs options available. We in no way can
+                        gaurantee "exact" pricing simply due to the nature of what our site aims to
+                        provide.  We focus more on averaging costs in an attempt to prepare you for the overall amount
+                        total so that you can get a generalized idea and plan your budget accordingly.
+                        To find out more about how this information is calculated, please click on the button below:
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="mx-auto d-block">
+                        <input id="submit" class="btn btn-default" type="submit" value="Disclaimer Details" onclick="detailsClicked()" style="visibility:visible" />
+                        <p id="flight" align="left" style="font-size: smaller">
+                        </p>
+                    </div>
+                </div>
+                <div class="appendLoc">
+                </div>
+                <br />
+                <div class="mx-auto d-block">
+                    <h2 style="font-size:large;">Sites to Book your Flight/Hotel</h2>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-2">
+                            <h6><a href="https://www.priceline.com/?tab=vacations">Priceline</a></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6><a href="https://www.expedia.com/">Expedia</a></h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6><a href="https://www.tripadvisor.com">TripAdvisor</a></h6>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+            }
+            }
+            <br />
+            <br />
+
+            @section PageScripts{
+                <script type="text/javascript" src="~/Scripts/Disclaimer.js"></script>
+            }

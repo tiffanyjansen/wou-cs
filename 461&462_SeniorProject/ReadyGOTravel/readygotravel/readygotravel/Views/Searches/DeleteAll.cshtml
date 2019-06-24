@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DeleteAll";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Clear Search History</h2>
+        <hr />
+        <h4>Search History Count: @ViewBag.searchesCount</h4>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+
+                @*check if has have any searches to display and then display message depending on that.*@
+                @if (ViewBag.searchesCount >= 1)
+                {
+                    <h4>Are you sure you want to clear your search history?</h4>
+
+
+                    @*Button to confirm deletion of search history*@
+                    <input type="submit" value="yes" class="btn btn-default" />
+
+                    @*Button to return to Search History page*@
+                    @Html.ActionLink("No", "UserSearches", "Searches", null, new { @class = "btn navbar-btn" })
+
+                }
+                else
+                {
+                    <h4>No searches in your search history? Have a budget and a destination you want to go to?</h4>
+                    <h4> Try making some searches @Html.ActionLink("here.", "Create", "Search")</h4>
+                    @*Button to return to Search History page*@
+                    @Html.ActionLink("Back", "UserSearches", "Searches", null, new { @class = "btn navbar-btn" })
+                }
+            </div>
+        }
+
+    </div>
+</div>

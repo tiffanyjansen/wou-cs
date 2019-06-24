@@ -1,0 +1,169 @@
+﻿@model  readygotravel.Models.Person
+@using Microsoft.AspNet.Identity;
+@using readygotravel.Models;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "Top European Locations";
+}
+
+
+<div class="image-bar3">
+    <div class="content">
+        @if (Request.IsAuthenticated)
+        {
+            int position = @User.Identity.GetUserName().IndexOf("@");
+            <h2>Welcome @Html.DisplayFor(model => model.FirstName)! </h2>
+
+        }
+        else
+        {
+            <h2>Welcome Guest!</h2>
+        }
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <h4>We may be able to help you pick your next Dream Destination!</h4>
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <h6>Here we Showcase the Top 12 Locations to Visit in Europe!</h6>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<br />
+<br />
+
+<div class="container" style="margin-top: 50px">
+    <div class="jumbotron">
+
+        <div><h3 style="text-align:center">Top European Locations</h3></div>
+        <hr />
+        <div class="row">
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#1: Paris - France</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/paris.png ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">There are 6,100 rues (or streets) in Paris; the shortest one being just 5.75 meters long</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[0]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$31.28</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#2: Florence - Italy</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/florence.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Nearly a third of the world’s art treasures reside in Florence</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[1]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$26.81</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#3: Amsterdam - Netherlands</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/amsterdam.png ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Between 12,000 and 15,000 bicycles are pulled out of Amsterdam’s canals each year</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[2]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$34.63</p>
+            </div>
+            <div class="col-12"><hr /></div>
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#4: London - United kingdom</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/london.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">To get a london taxi license you have to prove that you know every street/landmark which takes 2-4 years to memorize</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[3]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$36.50</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#5: Barcelona - Spain</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/barcelona.png ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">In Barcelona, they control the pigeon population by mixing birth control chemicals with the birdseed</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[4]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$25.69</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#6: Rome - Italy</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/rome.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Rome has a sovereign state located entirely in its city limits, the Vatican City, which is also the world’s smallest state</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[5]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$41.33</p>
+            </div>
+            <div class="col-12"><hr /></div>
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#7: Reykjavik - Iceland</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/reykjavik.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Reykjavik gets as little as four hours of sunlight in the winter and as much as 21 hours of daylight in the summer</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[6]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$27.42</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#8 Edinburgh - Scotland</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/edinburgh.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Edinburgh castle is built on an extinct volcano. The last time the volcano erupted was 350 million years ago</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[7]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$32.59</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#9  Prague - Czech Republic</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/prague.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">
+                    It was in prague that the general asembly of Internatinal Astronomical Union meet and redefined Pluto as a dwarf planet in 2006
+                </p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[8]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$21.00</p>
+            </div>
+            <div class="col-12"><hr /></div>
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#10 Galway - Ireland</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/galway.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Galway is famous for being the festival capital of Ireland, hosting on average 122 festivals and events per year</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[9]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$24.57</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#11 Nice - France</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/nice.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">In Nice, Italian is spoken all around the city, taught in schools alongside English, and also offers a large selection of Italian dishes</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[10]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$43.56</p>
+            </div>
+
+            <div class="col-4 text-center">
+                <h6 style=" margin:0;padding:0;">#12 Istanbul - Turkey</h6>
+                <img class="mx-auto d-block" src="@Url.Content("~/Content/Images/TopEurope/istanbul.png  ")" style="width:320px; height:230px;" />
+                <h6 style=" margin:0;padding:0;">Location Fun Fact: </h6><p style=" margin:0;padding:0;">Istanbul is the only city that lies on two continents(Asia and Europe). This fact makes Istanbul to be a centre of trade</p>
+                <h6 style=" margin:0;padding:0;">Avg Searched Hotel Star Rating: </h6><p style=" margin:0;padding:0;">@ViewBag.hotelList[11]</p>
+                <h6 style=" margin:0;padding:0;">Avg Food Cost Per Day/Per Person: </h6><p style=" margin:0;padding:0;">$5.89</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                @if (Request.IsAuthenticated)
+                {
+                    var user = User.Identity;
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    var UserManager = new UserManager<ApplicationUser>
+                        (new UserStore<ApplicationUser>
+                           (context));
+                    var roles = UserManager.GetRoles(user.GetUserId());
+                    if (!(roles.Count == 0))
+                    {
+                        if (roles[0].ToString() == "Admin")
+                        {
+                            <br />
+                            <br />
+                            <input class="btn btn-default mx-auto d-block" type="button" value="Show Top Searched Locations" onclick="location.href='@Url.Action("Display", "TopLocations")'" />
+                        }
+                    }
+                }
+            </div>
+            <div class="col-sm"></div>
+        </div>
+    </div>
+</div>

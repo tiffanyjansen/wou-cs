@@ -1,0 +1,80 @@
+﻿@model readygotravel.Models.Search
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Search</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumTravelers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumTravelers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartAirport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartAirport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndAirport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndAirport)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

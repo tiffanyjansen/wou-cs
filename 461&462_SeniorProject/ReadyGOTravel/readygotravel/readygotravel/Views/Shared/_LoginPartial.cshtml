@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNet.Identity;
+@using readygotravel.Models;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using readygotravel.Controllers;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navChange">
+            <li class="nav-item">
+                @if (User.Identity.IsAuthenticated)
+                {
+                @*Create models to pull first name of authenticated user*@
+                DBContext db = new DBContext();
+                string idTemp = User.Identity.GetUserId();
+                int? id = db.People.Where(n => n.UserID.Equals(idTemp)).First().PersonID;
+                string person = db.People.Where(p => p.PersonID == id).Select(n => n.FirstName).FirstOrDefault();
+
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>
+                (new UserStore<ApplicationUser>
+                    (context));
+                var roles = UserManager.GetRoles(user.GetUserId());
+                if (!(roles.Count == 0))
+                {
+                    if (roles[0].ToString() == "Admin")
+                    {
+                            <a href="#" class="btn-link disabled btn" id="displayName">Hello Admin!</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn-link disabled btn" id="displayName">Hello @person!</a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="#" class="btn-link disabled btn" id="displayName">Hello @person!</a>
+                    }
+                }
+            </li>
+            <li class="nav-item navChange">
+                @Html.ActionLink("My Profile", "Details", "People", routeValues: null, htmlAttributes: new { @class = "btn navbar-btn", title = "Manage" })
+            </li>
+            <li class="nav-item navChange"><a class="navChange btn navbar-btn" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav navChange">
+        <li class="nav-item">@Html.ActionLink("CREATE ACCOUNT", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn navbar-btn", id = "registerLink" })</li>
+        <li class="nav-item">@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn navbar-btn", id = "loginLink" })</li>
+    </ul>
+}

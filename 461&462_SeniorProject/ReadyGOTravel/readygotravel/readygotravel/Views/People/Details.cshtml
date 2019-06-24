@@ -1,0 +1,73 @@
+﻿@model readygotravel.Models.Person
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container">
+    <div class="jumbotron text-center">
+        @if (ViewBag.Admin == 1)
+        {
+            <h3 style="font-size:xx-large;">My Profile Page</h3>
+        }
+        else
+        {
+            <h2>My Profile Page</h2>
+        }
+        <h5>View and manage your profile here!</h5>
+        <hr />
+
+        <!--Personal information section-->
+        <h4>Personal Information:</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                First Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                Last Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                Email
+            </dt>
+            <dd>
+                @User.Identity.Name
+            </dd>
+        </dl>
+
+
+        <hr />
+        <!--Buttons setup.-->
+        <div class="row">
+            <div class="col-4">
+                <h4>View Favorite locations:</h4>
+                @Html.ActionLink("Favorites", "Index", "Favorites", null, new { @class = "btn navbar-btn" })
+
+            </div>
+            <div class="col-4">
+
+                <h4>View Search History:</h4>
+                @Html.ActionLink("History", "UserSearches", "Searches", null, new { @class = "btn navbar-btn" })
+                @if (ViewBag.Admin == 1)
+                {
+                    @Html.ActionLink("Show Top Searched Locations", "Display", "TopLocations", null, new { @class = "btn navbar-btn" })
+                }
+
+            </div>
+            <div class="col-4">
+                <h4>Edit your Profile information:</h4>
+                @Html.ActionLink("Edit Name", "Edit", "People", null, new { @class = "btn navbar-btn" })
+                @Html.ActionLink("Edit Password", "ChangePassword", "Manage", null, new { @class = "btn navbar-btn" })
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
