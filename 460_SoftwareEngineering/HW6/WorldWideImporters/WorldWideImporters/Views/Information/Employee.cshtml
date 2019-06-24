@@ -1,0 +1,24 @@
+﻿@model WorldWideImporters.Models.ViewModels.Info
+@Styles.Render("~/Content/css")
+
+<div class="center">
+    <h1>Client Details</h1>
+</div>
+<br />
+<div>   
+    <div class="row">
+        <div class="col-md-6">
+            <div id="box">
+                <h2>@Html.DisplayFor(m => m.Name)</h2><hr />
+                <p><b>@Html.DisplayNameFor(model => model.PName) : </b>@Html.DisplayFor(model => model.PName)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Fax) : </b>@Html.DisplayFor(model => model.Fax)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Email) : </b>@Html.DisplayFor(model => model.Email)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Member) : </b>@Html.DisplayFor(model => model.Member)</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a href="https://placeholder.com"><img style="margin-top: 10px;" src="https://via.placeholder.com/300" /></a>
+        </div>
+    </div>
+</div>

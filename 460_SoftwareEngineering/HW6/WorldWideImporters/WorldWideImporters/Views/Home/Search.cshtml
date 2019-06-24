@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WorldWideImporters.Models.Person>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="center">
+    <h2 style="font: large;">Client Search</h2>
+    <div class="search-container">
+        <form method="get">
+            <input type="text" placeholder="Search.." name="search" required />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<form method="post">
+    <ul style="list-style-type: none;">
+        @foreach (var item in Model)
+        {
+            <li><button class="btn-group-justified, btn-block" type="submit" style="text-align: left; color: black; padding: 10px; margin-top: 5px; opacity: 0.65;" name="ID" value=@item.PersonID>@Html.DisplayFor(modelItem => item.FullName)</button></li>
+        }
+    </ul>
+</form>

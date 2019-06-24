@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AuctionHouse.Models.Bid>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="center" style="font-family: Georgia, serif;">
+    <h1>Reginald's Ancient Antiquities Auction House</h1>
+    <br />
+</div>
+
+<div class="center">
+    <a class="btn btn-primary" @Html.ActionLink("Place a Bid!", "Create", "Bid")</a>
+    <br /><br />
+</div>
+
+<div class="col-md-12">
+    <table align="center">
+        <thead>
+            <tr>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Item)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Item1.Name)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Buyer)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Timestamp)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.Item)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.ActionLink("" + item.Item1.Name, "Details", "Item", new { id = item.Item }, null)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.Buyer)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @if(@item.Timestamp.ToString("d") == @DateTime.Today.ToString("d")){
+                            @item.Timestamp.ToString("T")
+                        }
+                        else{
+                            @Html.DisplayFor(modelItem => item.Timestamp)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

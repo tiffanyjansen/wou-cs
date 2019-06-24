@@ -1,0 +1,66 @@
+﻿@model WorldWideImporters.Models.ViewModels.Info
+@Styles.Render("~/Content/css")
+
+<div class="center">
+    <h1>Client Details</h1>
+</div>
+<br />
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="box">
+                <h2>@Html.DisplayFor(m => m.Name)</h2><hr />
+                <p><b>@Html.DisplayNameFor(model => model.PName) : </b>@Html.DisplayFor(model => model.PName)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Phone) :</b> @Html.DisplayFor(model => model.Phone)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Fax) : </b>@Html.DisplayFor(model => model.Fax)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Email) : </b>@Html.DisplayFor(model => model.Email)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Member) : </b>@Html.DisplayFor(model => model.Member)</p>
+            </div>
+            <div id="box" style="margin-top: 20px;">
+                <h2>Company Profile</h2><hr />
+                <p><b>@Html.DisplayNameFor(model => model.CompanyName) : </b>@Html.DisplayFor(model => model.CompanyName)</p>
+                <p><b>@Html.DisplayNameFor(model => model.CompanyPhone) : </b> @Html.DisplayFor(model => model.CompanyPhone)</p>
+                <p><b>@Html.DisplayNameFor(model => model.CompanyFax) : </b>@Html.DisplayFor(model => model.CompanyFax)</p>
+                <p><b>@Html.DisplayNameFor(model => model.Website) : </b><a href=@Html.DisplayFor(model => model.Website)>@Html.DisplayFor(model => model.Website)</a>
+                <p><b>@Html.DisplayNameFor(model => model.CompanyYear) : </b>@Html.DisplayFor(model => model.CompanyYear)</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a href="https://placeholder.com"><img style="margin-top: 10px;" src="https://via.placeholder.com/300" /></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="box">
+                <h2>Purchase History Summary</h2><hr />
+                <p><b>@Html.DisplayNameFor(model => model.Orders) : </b>@Html.DisplayFor(model => model.Orders)</p>
+                <p><b>@Html.DisplayNameFor(model => model.GrossSales) : </b> @Html.DisplayFor(model => model.GrossSales)</p>
+                <p><b>@Html.DisplayNameFor(model => model.GrossProfit) : </b>@Html.DisplayFor(model => model.GrossProfit)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="box">
+                <h2>Top 10 Items Purchased</h2><hr />
+                <table class="table">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Products.First().StockItemID)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products.First().Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products.First().Profit)</th>
+                        <th>@Html.DisplayNameFor(model => model.Products.First().Salesperson)</th>
+                    </tr>
+                    @for (var i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => modelItem.Products.Skip(i).First().StockItemID)</td>
+                            <td>@Html.DisplayFor(modelItem => modelItem.Products.Skip(i).First().Description)</td>
+                            <td>@Html.DisplayFor(modelItem => modelItem.Products.Skip(i).First().Profit)</td>
+                            <td>@Html.DisplayFor(modelItem => modelItem.Products.Skip(i).First().Salesperson)</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

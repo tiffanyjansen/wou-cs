@@ -1,0 +1,53 @@
+﻿@model AuctionHouse.Models.Item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="center">
+    <h2 style="font-family: Georgia, serif;">
+        Details for @Html.DisplayFor(model => model.Name)
+    </h2>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <img style="width: 100%;" src="~/Images/antiques_sign.jpg" />
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+    </div>
+    <div class="col-md-8">
+        <h4 style="font-family: Georgia, serif;">@Html.DisplayFor(model => model.ID)</h4>
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+    </div>
+    <div class="col-md-8">
+        <h4 style="font-family: Georgia, serif;">@Html.DisplayFor(model => model.Name)</h4>
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+    </div>
+    <div class="col-md-8">
+        <h4 style="font-family: Georgia, serif;">@Html.DisplayFor(model => model.Description)</h4>
+
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.Seller, htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+    </div>
+    <div class="col-md-8">
+        <h4 style="font-family: Georgia, serif;">@Html.DisplayFor(model => model.Seller)</h4>
+    </div>
+</div>
+
+<div class="center">
+    <div id="Bids"></div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/biddingInfo.js"></script>
+}
+
+

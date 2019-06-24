@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Homework 4</h1>
+    <p class="lead">This assignment is to get us familiar with ASP.NET MVC 5, GET, POST, and other important development tools.
+    More info can be found by clicking the button below. In this homework I will be creating a Metric Converter and a Color Chooser.
+    At this moment I am not sure how that is going to happen, but eventually I will get it down.</p>
+    <p><a href="http://www.wou.edu/~morses/classes/cs46x/assignments/HW4_1819.html" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Miles to Metric Converter</h2>
+        <p>
+            Ever wanted to know how many millimeters your drive to work was? Well, here is the place to figure it out.
+            By clicking the button below you will be taken to a page where you can do just that. All you gotta do is 
+            input the number of miles and the program will do the rest (I hope..).
+        </p>
+        <p><a class="btn btn-primary" @Html.ActionLink("Try it Out", "Converter", "Home")</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Color Chooser</h2>
+        <p>
+            Ever wanted to know what two colors mixed together would look like? Well, here is the place to find out.
+            By clicking the button you will be able to pick two colors and mix them. The only problem is you need to know 
+            the Hexidecimal value of the colors (I would Google it, if you actually want to know what certain colors would 
+            look like... otherwise just enjoy plugging in random things). After that the code will create a masterpiece with the colors 
+            chosen. (By masterpiece I mean it will mix the two colors, that's all. No drawing.)
+        </p>
+        <p><a class="btn btn-primary" @Html.ActionLink("Check it Out", "Create", "Color")</a></p>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Converter";
+}
+<h2>@ViewBag.Message</h2>
+
+<form method="get">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Miles:</h3>
+            <input name="miles" type="number" min="1" step="0.0000001">
+        </div>
+        <div class="col-md-6">
+            <h3>Select a Unit</h3>
+            <fieldset class="col-md-6">
+                <input type="radio" name="unit" value="millimeters" checked />millimeters<br />
+                <input type="radio" name="unit" value="centimeters" />centimeters<br />
+                <input type="radio" name="unit" value="meters" />meters<br />
+                <input type="radio" name="unit" value="kilometers" />kilometers<br />
+            </fieldset>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-md-12 col-md-offset-5">
+            <p><input class="btn btn-primary" type="submit" value="Convert" /></p>
+        </div>
+    </div>
+</form>
+
+<h3 style="color:purple">@ViewBag.Answer</h3>

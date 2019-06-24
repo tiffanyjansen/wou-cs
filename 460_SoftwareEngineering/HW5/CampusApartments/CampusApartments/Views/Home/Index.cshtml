@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Home = "active";
+}
+
+<div id="Intro" class="center">
+    <h1 style="font:x-large">Campus Apartments</h1>
+    <br />
+    <p class="lead">
+        The Campus Apartments is a wonderful complex to live it. We have cheap housing for students who
+        need a place to live close to campus. We are only a 5 min walk away from the main building on campus.
+        We make it easy to submit a maintenance request. 
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="center">
+            <h2>Renter's Corner</h2>
+            <p>
+                Hello Renters! The Campus Apartments are happy to have you living in them. We are happy to inform you that
+                we have a spot for you to voice your complaints and submit maintenance requests from the comfort of your home.
+                Once you have submitted the form one of our trusty workers will come by and fix the issue as soon as we can! Thank
+                you for choosing Campus Apartments for your renting needs!
+            </p>
+            <p><a class="btn btn-default"@Html.ActionLink("Check out the Form", "Create", "Requests")</a></p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="center">
+            <h2>Manager's Corner</h2>
+            <p>
+                Hello Managers! Here is where you can find the report for the maintenance requests that have already been filled out.
+                They include the phone numbers of the renter so you can contact them. Just make sure you know whether or not you have 
+                permission to enter the unit before just going in (Don't worry, we made sure to include that in the report). Make sure
+                you keep the people happy. Thank you for working for us!
+            </p>
+            <p><a class="btn btn-default"@Html.ActionLink("Maintenance Report", "Index", "Requests")</a></p>
+        </div>
+    </div>
+</div>

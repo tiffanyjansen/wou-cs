@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AuctionHouse.Models.Item>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="center">
+    <h2 style="font-family: Georgia, serif;">Items For Sale</h2>
+</div>
+
+<div class="col-md-12">
+    <table align="center">
+        <thead>
+            <tr>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    @Html.DisplayNameFor(model => model.Seller)
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    Edit
+                </th>
+                <th style="font-family: Georgia, serif;">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.ActionLink("" + item.Name, "Details", "Item", new { id = item.ID }, null)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.DisplayFor(modelItem => item.Seller)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.ActionLink("Editor for " + item.Name, "Edit", "Item", new { id = item.ID }, null)
+                    </td>
+                    <td style="font-family: Georgia, serif;">
+                        @Html.ActionLink("Delete " + item.Name + "?", "Delete", "Item", new { id = item.ID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="col-md-12">
+    <div class="center">
+        <h3 style="font-family: Georgia, serif;">
+            @Html.ActionLink("Create a New Item to Sell", "Create", "Item")
+        </h3>
+    </div>
+</div>

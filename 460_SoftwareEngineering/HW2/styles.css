@@ -1,0 +1,68 @@
+#background{
+    background: whitesmoke !important;
+    padding: 25px;
+}
+#Title{
+    margin-top: 25px;
+    background: lightblue;
+    border: double 5px black;
+    text-align: center;
+    padding: 15px;
+}
+#text{
+    margin-top: 10px;
+    background: lightblue;
+    border: solid 5px black;
+    text-align: center;
+    padding: 10px;
+    visibility: visible;
+}
+#text2{
+    margin-top: 10px;
+    background: lightblue;
+    border: solid 5px black;
+    text-align: center;
+    padding: 10px;
+    visibility: visible;
+}
+#note{
+    margin-top: 10px;
+    background: lightblue;
+    border: solid 5px black;
+    text-align: center;
+    padding: 10px;
+    visibility: visible;
+}
+#func{
+    margin-top: 30px;
+    background: lightblue;
+    border: solid 5px black;
+    padding: 10px;
+}
+th{
+    border: 1px solid black;
+    padding: 20px;
+    background-color: lightgreen;
+}
+td{
+    border: 1px solid black;
+    padding: 10px;
+    background-color: rgb(241, 238, 238);
+}
+table{
+    font-family:"Lucida Console";
+    font-size: 15px;
+    border: 1px solid black;
+    margin-top: 25px;
+    padding: 5px;
+    text-align: center;
+}
+#picture{
+    visibility: hidden;
+    margin-top: 25px;
+}
+#res{
+    visibility: hidden;
+    margin-top: 25px;
+    padding: 5px;
+}

@@ -1,0 +1,64 @@
+﻿@model AuctionHouse.Models.Bid
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="center">
+    <h2 style="font-family: Georgia, serif;">Place Your Bid!!</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div class="center">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Timestamp)
+    </div>
+
+    <!--Form Group for Item-->
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-2">
+            @Html.LabelFor(model => model.Item, "Item", htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("Item", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Item)
+        </div>
+    </div>
+
+    <!--Form Group for Buyer-->
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-2">
+            @Html.LabelFor(model => model.Buyer, "Buyer", htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("Buyer", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Buyer)
+        </div>
+    </div>
+
+    <!--Form Group for Price-->
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-2">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label;", @style = "font-family: Georgia, serif; font-size: 20px;" })
+        </div>
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+    </div>
+
+    <!--Form Group for Submit Button-->
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="center">
+                <input type="submit" value="Submit Bid" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+}
