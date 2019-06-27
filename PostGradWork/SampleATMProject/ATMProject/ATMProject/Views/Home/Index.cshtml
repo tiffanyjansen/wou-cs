@@ -2,15 +2,24 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container-fluid">
-    <!--This is for users who have already used the ATM.-->
-    <h2>Already a member?</h2>
-    <h3>Please input your pin.</h3>
-    <input type="number" min="0000" max="99999999" />
-</div>
-<div class="container-fluid">
-    <!--This is for first time users, since populating the database didn't seem like a great idea...-->
-    <h2>New to this ATM?</h2>
-    <h3>Generate PIN here:</h3>
-    <button>Generate</button>
-</div>
+    <div class="center">
+        <div class="container-fluid">
+            <h1>Welcome to the Virtual Automated Teller Machine</h1>
+        </div>
+        <form method="post">
+            <div class="container-fluid">
+                <!--This is for users who have already used the ATM.-->
+                @ViewBag.Error
+                <h2>Already a member?</h2>
+                <h3>Please input your pin.</h3>
+                <input name="pin" />
+                <button type="submit" name="button" value="0">Enter</button>
+            </div>
+            <div class="container-fluid">
+                <!--This is for first time users, since populating the database didn't seem like a great idea...-->
+                <h2>New to this ATM?</h2>
+                <h3>Generate PIN here:</h3>
+                <button type="submit" name="button" value="1">Generate</button>
+            </div>
+        </form>
+    </div>

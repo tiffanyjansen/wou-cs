@@ -10,7 +10,9 @@ namespace ATMProject.Models
     {
         public int ID { get; set; }
 
-        public int PIN { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string PIN { get; set; }
 
         [Column(TypeName = "money")]
         public decimal CheckingAmount { get; set; }

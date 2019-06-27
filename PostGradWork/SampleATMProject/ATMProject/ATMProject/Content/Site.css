@@ -1,34 +1,42 @@
-﻿body {
+﻿/*The main part of the page*/
+body {
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: lightgray;
-    margin: 15px;
-}
-
-.body-content {
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
+    background-color: #FFFAFC;
 }
 
+/*The first 'container'*/
 .jumbotron {
     margin: 15px;
     padding: 30px;
-    border-radius: 15px;    
-    background-color: gray;
+    border-radius: 15px;
+    background-color: #BFBBBD;
 }
 
+/*The picture*/
+.container {
+    background-image: url(Images/blue-cyber.jpg);
+    background-size: 1000px 500px;
+    color: whitesmoke;
+    min-height: 400px;
+}
+
+/*The extra padding in between stuff in the picture*/
+.container-fluid {
+    padding: 15px;
+}
+
+/*Center things!*/
 .center {
     text-align: center;
     align-content: center;
 }
 
-.container-fluid {
-    padding: 30px;
-    color: white;
+/*Buttons*/
+.button {
+
 }
 
-.container {
-    background-image: url(Images/blue-rough.jpg);
-    padding: 0px;
-    margin: 0px;
-}
+/*Text*/

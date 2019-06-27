@@ -2,7 +2,7 @@
 
 CREATE TABLE [dbo].[Users] (
 	[ID] INT IDENTITY(1,1) NOT NULL,
-	[PIN] INT NOT NULL,
+	[PIN] NVARCHAR(10) NOT NULL,
 	[CheckingAmount] MONEY NOT NULL,
 	[SavingsAmount] MONEY NOT NULL,
 

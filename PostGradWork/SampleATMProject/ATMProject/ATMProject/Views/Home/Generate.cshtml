@@ -1,0 +1,19 @@
+﻿@model ATMProject.Models.User
+
+@{
+    ViewBag.Title = "Generate";
+}
+
+<div class="center">
+    <div class="container-fluid">
+        <br /><br />
+        <h1>Welcome new user.</h1>
+    </div>
+    <div class="container-fluid">
+        <h2>Your PIN is:</h2>
+        <h3>@Html.DisplayFor(model => model.PIN)</h3>
+    </div>
+    <div class="container-fluid">
+        <button type="submit" onclick="location.href='@Url.Action("Index", "Home")'">Go Back</button>
+    </div>
+</div>
