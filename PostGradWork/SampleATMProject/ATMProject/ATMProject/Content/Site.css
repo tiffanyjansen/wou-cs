@@ -1,0 +1,49 @@
+﻿body {
+    background-color: #FAF9F9;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.jumbotron {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #BEE3DB;
+    border-radius: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.center {
+    text-align: center;
+    align-content: center;
+}
+
+h1, 
+h2,
+h3 {
+    color: #555B6E;
+}
+
+h4,
+h5,
+h6,
+p {
+    color: #89B0AE;
+}
