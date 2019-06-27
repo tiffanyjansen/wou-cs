@@ -2,29 +2,19 @@
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: lightgray;
+    margin: 15px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
 .jumbotron {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin: 15px;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 15px;    
     background-color: gray;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
 }
 
 .center {
@@ -32,8 +22,13 @@
     align-content: center;
 }
 
-.container {
+.container-fluid {
     padding: 30px;
-    background-color: green;
-    color: black;
+    color: white;
+}
+
+.container {
+    background-image: url(Images/blue-rough.jpg);
+    padding: 0px;
+    margin: 0px;
 }

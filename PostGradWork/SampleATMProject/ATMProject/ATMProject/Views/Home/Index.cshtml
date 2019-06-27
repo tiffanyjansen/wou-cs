@@ -2,24 +2,15 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="jumbotron">
-            <div class="center">
-                <div class="container">
-                    <!--This is for users who have already used the ATM.-->
-                    <h2>Already a member?</h2>
-                    <h3>Please input your pin.</h3>
-                    <input type="number" min="0000" max="99999999" />
-                </div>
-                <div class="container">
-                    <!--This is for first time users, since populating the database didn't seem like a great idea...-->
-                    <h2>New to this ATM?</h2>
-                    <h3>Generate PIN here:</h3>
-                    <button>Generate</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid">
+    <!--This is for users who have already used the ATM.-->
+    <h2>Already a member?</h2>
+    <h3>Please input your pin.</h3>
+    <input type="number" min="0000" max="99999999" />
+</div>
+<div class="container-fluid">
+    <!--This is for first time users, since populating the database didn't seem like a great idea...-->
+    <h2>New to this ATM?</h2>
+    <h3>Generate PIN here:</h3>
+    <button>Generate</button>
 </div>
