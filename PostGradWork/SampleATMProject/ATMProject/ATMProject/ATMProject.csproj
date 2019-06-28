@@ -220,7 +220,7 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Balance.cshtml" />
     <Content Include="Views\Home\Deposit.cshtml" />
-    <Content Include="Views\Home\Transfer.cshtml" />
+    <Content Include="Views\Home\Withdrawl.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

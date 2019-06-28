@@ -171,7 +171,7 @@ namespace ATMProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deposit(string PIN, string account, decimal amount)
+        public ActionResult Deposit(string PIN, string account, decimal? amount)
         {
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
@@ -180,7 +180,7 @@ namespace ATMProject.Controllers
             if(amount == null)
             {
                 ViewBag.Error = "Please input an amount.";
-                return View(PIN);
+                return View(user);
             }
 
             switch (account)
@@ -196,14 +196,57 @@ namespace ATMProject.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });
                 default:
-                    return View(PIN);
+                    return View(user);
             }            
         }
 
         [HttpGet]
         public ActionResult Withdrawl(string PIN)
         {
-            return View();
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Withdrawl(string PIN, string account, decimal? amount)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            //If no amount was inputted refresh page and give an error message.
+            if (amount == null)
+            {
+                ViewBag.Error = "Please input an amount.";
+                return View(user);
+            }
+
+            switch (account)
+            {
+                case "check":
+                    if(user.CheckingAmount < amount)
+                    {
+                        ViewBag.MoneyError = "You do not have enough money to withdrawl that much. Please input a different amount.";
+                        return View(user);
+                    }
+                    user.CheckingAmount -= (decimal)amount;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                case "save":
+                    if(user.SavingsAmount < amount)
+                    {
+                        ViewBag.MoneyError = "You do not have enough money to withdrawl that much. Please input a different amount.";
+                        return View(user);
+                    }
+                    user.SavingsAmount -= (decimal)amount;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                default:
+                    return View(user);
+            }
         }
 
         [HttpGet]
