@@ -10,6 +10,7 @@ namespace ATMProject.Controllers
 {
     public class HomeController : Controller
     {
+        //Database connection
         DataContext db = new DataContext();
 
         [HttpGet]
@@ -90,7 +91,7 @@ namespace ATMProject.Controllers
             string pin = GeneratePin();
 
             //Create the user and add them to the database.
-            User newUser = new User { PIN = pin, CheckingAmount = 0, SavingsAmount = 0 };
+            User newUser = new User { PIN = pin, CheckingAmount = 1, SavingsAmount = 1 };
             db.Users.Add(newUser);
             db.SaveChanges();
 
@@ -151,17 +152,63 @@ namespace ATMProject.Controllers
                 case "balance":
                     return RedirectToAction("Balance", new { PIN });
                 case "transfer":
-                    return RedirectToAction("Transfer", new { PIN });
-                case "fastCash":
-                    return RedirectToAction("FastCash", new { PIN });
-                case "setPreferences":
-                    return RedirectToAction("SetPreferences", new { PIN });
+                    return RedirectToAction("Transfer", new { PIN });               
                 case "logOut":
                     return RedirectToAction("Index");
-                default:
-                    ViewBag.Error = "There was no button selected.";
+                default:                   
                     return View(user);
             }
+        }
+
+        [HttpGet]
+        public ActionResult Deposit(string PIN)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Deposit(string PIN, string account, decimal amount)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            switch (account)
+            {
+                case "checking":
+                    user.CheckingAmount += amount;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                case "savings":
+                    user.SavingsAmount += amount;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                default:
+                    return View(PIN);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Withdrawl(string PIN)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Balance(string PIN)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult Transfer(string PIN)
+        {
+            return View();
         }
     }
 }

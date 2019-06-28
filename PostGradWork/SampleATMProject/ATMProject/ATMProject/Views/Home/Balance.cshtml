@@ -1,0 +1,33 @@
+﻿@model ATMProject.Models.User
+
+@{
+    ViewBag.Title = "Balance";
+}
+
+
+<br /><br /><br />    
+<div class="container-fluid">
+    <div class="center">
+        <h2>Your Balance</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="container-fluid">
+            <h3>@Html.DisplayNameFor(model => model.CheckingAmount)</h3>
+            <h3>$@string.Format("{0:C}", Html.DisplayFor(model => model.CheckingAmount))</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="container-fluid">
+            <h3>@Html.DisplayNameFor(model => model.SavingsAmount)</h3>
+            <h3>$@string.Format("{0:C}", Html.DisplayFor(model => model.CheckingAmount))</h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="center">
+        <button type="submit" onclick="location.href='@Url.Action("Account", "Home", new { pin = Model.PIN})'">Go Back</button>
+    </div>
+</div>

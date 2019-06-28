@@ -1,4 +1,6 @@
-﻿/*The main part of the page*/
+﻿
+/* This is the CSS File for the project, it just does the styling stuff. */
+/* The main part of the page */
 body {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -8,7 +10,7 @@ body {
     color: #08262F;
 }
 
-/*The first 'container'*/
+/* The first 'container' */
 .jumbotron {
     margin: 15px;
     padding: 30px;
@@ -16,7 +18,7 @@ body {
     background-color: #08262F;
 }
 
-/*The picture*/
+/* The picture */
 .container {
     background-image: url(Images/blue-cyber.jpg);
     background-size: 1000px 500px;
@@ -24,31 +26,31 @@ body {
     min-height: 400px;
 }
 
-/*The extra padding in between stuff in the picture*/
+/* The extra padding in between stuff in the picture */
 .container-fluid {
     padding: 15px;
 }
 
-/*Center things!*/
+/* Center things */
 .center {
     text-align: center;
     align-content: center;
 }
 
-/*Buttons*/
+/* Buttons */
 button {
     color: #08262F;
-    background-color: #0F9ABA;
+    background-color: white;
     border-radius: 5px;
     border-color: #08262F;
     border-style: double;
     border-width: 5px;
 }
     button:hover {
-        color: #0F9ABA;
+        color: white;
         background-color: #08262F;
         border-radius: 5px;
-        border-color: #0F9ABA;
+        border-color: white;
         border-style: double;
         border-width: 5px;
     }
@@ -62,7 +64,6 @@ button {
     border-style: double;
     border-width: 5px;
 }
-
     .btn:hover {
         width: inherit;
         color: white;
@@ -73,4 +74,4 @@ button {
         border-width: 5px;
     }
 
-/*Text*/
+/* Text */

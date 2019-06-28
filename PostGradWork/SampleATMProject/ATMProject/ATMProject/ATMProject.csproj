@@ -150,10 +150,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\blue-cyber.jpg" />
-    <Content Include="Content\Images\blue-geometric.jpg" />
-    <Content Include="Content\Images\blue-rough.jpg" />
-    <Content Include="Content\Images\green-cool.jpg" />
-    <Content Include="Content\Images\green-wave.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -195,6 +191,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\transactions.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -222,6 +219,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Generate.cshtml" />
     <Content Include="Views\Home\Account.cshtml" />
+    <Content Include="Views\Home\Balance.cshtml" />
+    <Content Include="Views\Home\Deposit.cshtml" />
+    <Content Include="Views\Home\Transfer.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
