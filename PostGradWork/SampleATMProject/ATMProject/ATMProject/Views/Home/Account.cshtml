@@ -1,0 +1,53 @@
+﻿@model ATMProject.Models.User
+
+@{
+    ViewBag.Title = "Account";
+}
+
+    <form method="post">
+        <div class="center">
+            <div class="container-fluid">
+                <h2>Select A Transaction</h2>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="deposit">Make a Deposit</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="balance">Account Balance</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="withdrawl">Withdrawl Cash</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="transfer">Transfer Between Accounts</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="fastCash">Fast Cash</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="setPreferences">Set Preferences</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" name="button" class="btn" value="logOut">Log Out</button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        @Html.Hidden(Model.PIN)
+    </form>

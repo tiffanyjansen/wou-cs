@@ -4,21 +4,21 @@
 
     <div class="center">
         <div class="container-fluid">
-            <h1>Welcome to the Virtual Automated Teller Machine</h1>
+            <h2>Welcome to the Virtual Automated Teller Machine</h2>
         </div>
         <form method="post">
             <div class="container-fluid">
                 <!--This is for users who have already used the ATM.-->
-                @ViewBag.Error
-                <h2>Already a member?</h2>
-                <h3>Please input your pin.</h3>
+                <h4>@ViewBag.Error </h4>
+                <h3>Already a member?</h3>
+                <h4>Please input your pin.</h4>
                 <input name="pin" />
                 <button type="submit" name="button" value="0">Enter</button>
             </div>
             <div class="container-fluid">
                 <!--This is for first time users, since populating the database didn't seem like a great idea...-->
-                <h2>New to this ATM?</h2>
-                <h3>Generate PIN here:</h3>
+                <h3>New to this ATM?</h3>
+                <h4>Generate PIN here:</h4>
                 <button type="submit" name="button" value="1">Generate</button>
             </div>
         </form>

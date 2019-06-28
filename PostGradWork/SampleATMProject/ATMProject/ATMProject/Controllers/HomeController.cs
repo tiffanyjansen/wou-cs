@@ -41,7 +41,7 @@ namespace ATMProject.Controllers
                 //Checks if the pin is attatched to a user in the database, if so redirect to page to deal with the money.
                 if(db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault() != null)
                 {
-                    return RedirectToAction("");
+                    return RedirectToAction("Account", new { pin });
                 }
 
                 //If the user is not in the database, let the user know that the pin is not recognized and to try again.
@@ -125,6 +125,43 @@ namespace ATMProject.Controllers
 
             //Return the pin if it's valid.
             return pin;
+        }
+
+        [HttpGet]
+        public ActionResult Account(string pin)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Account(string PIN, string button)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            switch (button)
+            {
+                case "deposit":
+                    return RedirectToAction("Deposit", new { PIN });
+                case "withdrawl":
+                    return RedirectToAction("Withdrawl", new { PIN });
+                case "balance":
+                    return RedirectToAction("Balance", new { PIN });
+                case "transfer":
+                    return RedirectToAction("Transfer", new { PIN });
+                case "fastCash":
+                    return RedirectToAction("FastCash", new { PIN });
+                case "setPreferences":
+                    return RedirectToAction("SetPreferences", new { PIN });
+                case "logOut":
+                    return RedirectToAction("Index");
+                default:
+                    ViewBag.Error = "There was no button selected.";
+                    return View(user);
+            }
         }
     }
 }

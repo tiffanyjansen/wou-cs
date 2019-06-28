@@ -4,7 +4,8 @@ body {
     padding-bottom: 30px;
     padding-right: 15px;
     padding-left: 15px;
-    background-color: #FFFAFC;
+    background-color: white;
+    color: #08262F;
 }
 
 /*The first 'container'*/
@@ -12,7 +13,7 @@ body {
     margin: 15px;
     padding: 30px;
     border-radius: 15px;
-    background-color: #BFBBBD;
+    background-color: #08262F;
 }
 
 /*The picture*/
@@ -35,8 +36,41 @@ body {
 }
 
 /*Buttons*/
-.button {
-
+button {
+    color: #08262F;
+    background-color: #0F9ABA;
+    border-radius: 5px;
+    border-color: #08262F;
+    border-style: double;
+    border-width: 5px;
 }
+    button:hover {
+        color: #0F9ABA;
+        background-color: #08262F;
+        border-radius: 5px;
+        border-color: #0F9ABA;
+        border-style: double;
+        border-width: 5px;
+    }
+
+.btn {
+    width: inherit;
+    color: #08262F;
+    background-color: white;
+    border-radius: 5px;
+    border-color: #08262F;
+    border-style: double;
+    border-width: 5px;
+}
+
+    .btn:hover {
+        width: inherit;
+        color: white;
+        background-color: #08262F;
+        border-radius: 5px;
+        border-color: white;
+        border-style: double;
+        border-width: 5px;
+    }
 
 /*Text*/
