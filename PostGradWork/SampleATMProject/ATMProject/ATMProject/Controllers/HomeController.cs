@@ -1,6 +1,7 @@
 ﻿using ATMProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -175,19 +176,28 @@ namespace ATMProject.Controllers
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
 
+            //If no amount was inputted refresh page and give an error message.
+            if(amount == null)
+            {
+                ViewBag.Error = "Please input an amount.";
+                return View(PIN);
+            }
+
             switch (account)
             {
-                case "checking":
-                    user.CheckingAmount += amount;
+                case "check":
+                    user.CheckingAmount += (decimal)amount;
+                    db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });
-                case "savings":
-                    user.SavingsAmount += amount;
+                case "save":
+                    user.SavingsAmount += (decimal)amount;
+                    db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });
                 default:
                     return View(PIN);
-            }
+            }            
         }
 
         [HttpGet]
