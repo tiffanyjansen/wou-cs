@@ -14,6 +14,12 @@ namespace ATMProject
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Ajax",
+                url: "Home/GetAmount/{id}/{pin}",
+                defaults: new { controller = "Home", action = "GetAmount", id = UrlParameter.Optional, pin = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -215,10 +215,10 @@ namespace ATMProject.Controllers
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
 
-            //If no amount was inputted refresh page and give an error message.
-            if (amount == null)
+            //If no amount was inputted or the amount is less than 0 refresh page and give an error message.
+            if (amount == null || amount < 0)
             {
-                ViewBag.Error = "Please input an amount.";
+                ViewBag.Error = "The amount you entered is not valid, please try again.";
                 return View(user);
             }
 
@@ -261,7 +261,34 @@ namespace ATMProject.Controllers
         [HttpGet]
         public ActionResult Transfer(string PIN)
         {
-            return View();
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Transfer(string PIN, string startAccount, string endAccount, decimal amount)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
+
+            return View(user);
+        }
+
+        public JsonResult GetAmount(string id, string pin)
+        {
+            //Get the user with the pin that was provided.
+            User user = db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault();
+
+            if(user == null)
+            {
+                return null;
+            }
+            else
+            {
+                return Json(new { check = user.CheckingAmount, save = user.SavingsAmount }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

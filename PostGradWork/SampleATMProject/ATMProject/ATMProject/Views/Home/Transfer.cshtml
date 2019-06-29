@@ -1,0 +1,43 @@
+﻿@model ATMProject.Models.User
+
+@{
+    ViewBag.Title = "Transfer";
+}
+
+<div class="container-fluid">
+    <div class="center">
+        <h2>Transfer Between Accounts</h2>
+    </div>
+</div>
+<form method="post">
+    <input type="hidden" value="@Model.PIN" id="PIN" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>From:</h3>
+                <select name="startAccount" id="startAccount" style="width: 200px;">
+                    <option value="check">Checking ($@string.Format("{0:C}", Html.DisplayFor(model => model.CheckingAmount)))</option>
+                    <option value="save">Savings ($@string.Format("{0:C}", Html.DisplayFor(model => model.SavingsAmount)))</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <h3>To:</h3>
+                <select name="endAccount" id="endAccount" style="width: 200px;">
+                    <option value="save">Savings ($@string.Format("{0:C}", Html.DisplayFor(model => model.SavingsAmount)))</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <h3>Amount:</h3>
+                <input name="amount" type="number" min="0.01" step="0.01" style="width: 200px;" />
+            </div>
+        </div>
+        @Html.Hidden(Model.PIN)
+    </div>
+    <div class="center">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/transfer.js"></script>
+}
