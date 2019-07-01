@@ -19,3 +19,6 @@ These homeworks were done in Fall of 2018. We were to do one a week and learn ne
 
 ### Senior Project
 This is my senior project. It was done in a group of 4 people. The README file in the folder will give you all the information you need. 
+
+### Post Grad Work
+This includes projects I have worked on since I graduated from Western, just so all my code is in the same place.
