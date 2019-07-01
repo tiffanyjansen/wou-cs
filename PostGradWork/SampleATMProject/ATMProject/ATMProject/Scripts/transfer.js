@@ -12,26 +12,26 @@
 });
 
 function successAjax(amount) {
-    var json = JSON.parse(amount); //parse the json object.
-    console.log(json.toString());
-    if (amount.length > 0) {
-        $('#endAccount').empty();
-        var end = findOther(start);
+    var json = JSON.parse(amount);
+    if (json.length > 0) {
+         $('#endAccount').empty();
+        var end = findOther(json[0].Type);
         var endName = getName(end);
         if (endName == "Savings") {
-            $('#endAccount').append('<option value="' + end + '"> ' + endName + '($' + amount[0].SavingsAmount.toFixed(2) + ') </option>');
+            $('#endAccount').append('<option> ' + endName + '($' + json[0].Amount.toFixed(2) + ') </option>');
         }
         if (endName == "Checking") {
-            $('#endAccount').append('<option value="' + end + '"> ' + endName + '($' + amount[0].CheckingAmount.toFixed(2) + ') </option>');
+            $('#endAccount').append('<option> ' + endName + '($' + json[0].Amount.toFixed(2) + ') </option>');
         }
     }
+   
 }
 
 /*
  * Figure out what the other account type is, and return the 'value' for the other account.
  * If input was unexpected return null.
  */ 
-function findOther(account) {
+function findOther(account) { 
     if (account == "check")
         return "save";
     if (account == "save")

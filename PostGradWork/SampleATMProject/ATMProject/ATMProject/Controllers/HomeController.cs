@@ -1,4 +1,5 @@
 ﻿using ATMProject.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -268,12 +269,38 @@ namespace ATMProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Transfer(string PIN, string startAccount, string endAccount, decimal amount)
+        public ActionResult Transfer(string PIN, string startAccount, decimal amount)
         {
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
 
-            return View(user);
+            switch (startAccount)
+            {
+                case "check":
+                    if(user.CheckingAmount < amount)
+                    {
+                        ViewBag.MoneyError = "You do not have the funds to transfer that amount, please try again.";
+                        return View(user);
+                    }
+                    user.CheckingAmount -= amount;
+                    user.SavingsAmount += amount;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                case "save":
+                    if (user.SavingsAmount < amount)
+                    {
+                        ViewBag.MoneyError = "You do not have the funds to transfer that amount, please try again.";
+                        return View(user);
+                    }
+                    user.SavingsAmount -= amount;
+                    user.CheckingAmount += amount;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Balance", new { PIN });
+                default:
+                    return View(user);
+            }
         }
 
         public JsonResult GetAmount(string id, string pin)
@@ -281,13 +308,23 @@ namespace ATMProject.Controllers
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault();
 
-            if(user == null)
+            List<Account> list = new List<Account>();
+            string result = "";
+
+            switch (id)
             {
-                return null;
-            }
-            else
-            {
-                return Json(new { check = user.CheckingAmount, save = user.SavingsAmount }, JsonRequestBehavior.AllowGet);
+                case "check":
+                    list.Add(new Account { Amount = user.SavingsAmount, Type = "check" });
+                    result = JsonConvert.SerializeObject(list, Formatting.None);
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                case "save":
+                    list.Add(new Account { Amount = user.CheckingAmount, Type = "save" });
+                    result = JsonConvert.SerializeObject(list, Formatting.None);
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                default:
+                    list.Add(new Account { Amount = 0, Type = null });
+                    result = JsonConvert.SerializeObject(list, Formatting.None);
+                    return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
     }
