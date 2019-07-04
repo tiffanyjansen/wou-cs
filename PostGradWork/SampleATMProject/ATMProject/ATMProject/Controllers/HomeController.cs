@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ATMProject.Controllers
@@ -42,7 +41,7 @@ namespace ATMProject.Controllers
                 }
 
                 //Checks if the pin is attatched to a user in the database, if so redirect to page to deal with the money.
-                if(db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault() != null)
+                if (db.Users.Where(u => u.PIN == pin).Select(u => u).FirstOrDefault() != null)
                 {
                     return RedirectToAction("Account", new { pin });
                 }
@@ -68,7 +67,7 @@ namespace ATMProject.Controllers
             //Check if the pin is the correct length
             if (pin.Length > 8 || pin.Length < 4)
             {
-                return "The PIN you inputted was either too long or too short, please try again.";                
+                return "The PIN you inputted was either too long or too short, please try again.";
             }
 
             //Note: I had to use a regular expression for the pins that start with '0'
@@ -99,7 +98,7 @@ namespace ATMProject.Controllers
 
             return View(newUser);
         }
-        
+
         /// <summary>
         /// This method generates the pin to be used by the new user.
         /// </summary>
@@ -114,7 +113,7 @@ namespace ATMProject.Controllers
 
             //Create the pin using the random number generator.
             string pin = "";
-            for(int i = 0; i < pinLength; i++)
+            for (int i = 0; i < pinLength; i++)
             {
                 int pinDigit = rand.Next(0, 10);
                 pin += pinDigit;
@@ -154,10 +153,10 @@ namespace ATMProject.Controllers
                 case "balance":
                     return RedirectToAction("Balance", new { PIN });
                 case "transfer":
-                    return RedirectToAction("Transfer", new { PIN });               
+                    return RedirectToAction("Transfer", new { PIN });
                 case "logOut":
                     return RedirectToAction("Index");
-                default:                   
+                default:
                     return View(user);
             }
         }
@@ -177,10 +176,9 @@ namespace ATMProject.Controllers
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
 
-            //If no amount was inputted refresh page and give an error message.
-            if(amount == null)
+            if (amount == null || amount < 0)
             {
-                ViewBag.Error = "Please input an amount.";
+                ViewBag.Error = "The amount you entered is not valid, please try again.";
                 return View(user);
             }
 
@@ -198,7 +196,7 @@ namespace ATMProject.Controllers
                     return RedirectToAction("Balance", new { PIN });
                 default:
                     return View(user);
-            }            
+            }
         }
 
         [HttpGet]
@@ -226,7 +224,7 @@ namespace ATMProject.Controllers
             switch (account)
             {
                 case "check":
-                    if(user.CheckingAmount < amount)
+                    if (user.CheckingAmount < amount)
                     {
                         ViewBag.MoneyError = "You do not have enough money to withdrawl that much. Please input a different amount.";
                         return View(user);
@@ -236,7 +234,7 @@ namespace ATMProject.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });
                 case "save":
-                    if(user.SavingsAmount < amount)
+                    if (user.SavingsAmount < amount)
                     {
                         ViewBag.MoneyError = "You do not have enough money to withdrawl that much. Please input a different amount.";
                         return View(user);
@@ -269,21 +267,27 @@ namespace ATMProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Transfer(string PIN, string startAccount, decimal amount)
+        public ActionResult Transfer(string PIN, string startAccount, decimal? amount)
         {
             //Get the user with the pin that was provided.
             User user = db.Users.Where(u => u.PIN == PIN).Select(u => u).FirstOrDefault();
 
+            if (amount == null || amount < 0)
+            {
+                ViewBag.Error = "The amount you entered is not valid, please try again.";
+                return View(user);
+            }
+
             switch (startAccount)
             {
                 case "check":
-                    if(user.CheckingAmount < amount)
+                    if (user.CheckingAmount < amount)
                     {
                         ViewBag.MoneyError = "You do not have the funds to transfer that amount, please try again.";
                         return View(user);
                     }
-                    user.CheckingAmount -= amount;
-                    user.SavingsAmount += amount;
+                    user.CheckingAmount -= (decimal)amount;
+                    user.SavingsAmount += (decimal)amount;
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });
@@ -293,8 +297,8 @@ namespace ATMProject.Controllers
                         ViewBag.MoneyError = "You do not have the funds to transfer that amount, please try again.";
                         return View(user);
                     }
-                    user.SavingsAmount -= amount;
-                    user.CheckingAmount += amount;
+                    user.SavingsAmount -= (decimal)amount;
+                    user.CheckingAmount += (decimal)amount;
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Balance", new { PIN });

@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="center">
         <h2>Make a Deposit</h2>
-        <h3>@ViewBag.Error</h3>
+        <div id="error"><h3 style="color:red;">@ViewBag.Error</h3></div>
     </div>
 </div>
 <form method="post">
@@ -19,8 +19,8 @@
                 <div class="center">
                     <h2>Select the account</h2>
                     <select name="account" style="width: 200px;">
-                        <option value="check">Checking</option>
-                        <option value="save">Savings</option>
+                        <option value="check">Checking ($@string.Format("{0:C}", Html.DisplayFor(model => model.CheckingAmount)))</option>
+                        <option value="save">Savings ($@string.Format("{0:C}", Html.DisplayFor(model => model.SavingsAmount)))</option>
                     </select>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="container-fluid">
                 <div class="center">
                     <h2>Amount to Deposit</h2>
-                    <input name="amount" type="number" min="0.01" step="0.01" max="99999.99" style="width: 200px;" />
+                    <input name="amount" type="number" max="100000000000000" min="0.01" step="0.01" style="width: 200px;" />
                 </div>
             </div>
         </div>
