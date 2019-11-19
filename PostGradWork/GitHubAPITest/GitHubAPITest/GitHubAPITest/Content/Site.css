@@ -21,3 +21,23 @@ dd.no-overflow {
     position: absolute;
     right: 15px;
 }
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table thead {
+    border: 1px solid #000000;
+}
+    .table thead th {
+        border: 1px solid #000000;
+    }
+
+.table tbody {
+    border: 1px solid #ffc107;
+}
+    .table tbody td {
+        border: 1px solid #ffc107;
+        vertical-align: middle;
+    }

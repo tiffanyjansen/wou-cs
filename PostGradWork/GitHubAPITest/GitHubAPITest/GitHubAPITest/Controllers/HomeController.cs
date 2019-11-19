@@ -13,6 +13,13 @@ namespace GitHubAPITest.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly string _key = System.Web.Configuration.WebConfigurationManager.AppSettings["GitHubAPIKey"];
+        private static readonly string _username = "tiffanyjansen";
+
+        /// <summary>
+        /// The Index method
+        /// </summary>
+        /// <returns>The View</returns>
         public ActionResult Index()
         {
             User user = GetUserData();
@@ -28,11 +35,8 @@ namespace GitHubAPITest.Controllers
         /// <returns>The User</returns>
         private User GetUserData()
         {
-            string key = System.Web.Configuration.WebConfigurationManager.AppSettings["GitHubAPIKey"];
-            var json = SendRequest("https://api.github.com/user", key, "tiffanyjansen");
-
+            var json = SendRequest("https://api.github.com/user", _key, _username);
             User user = new User(json); //create User using JSON data
-
             return user;
         }
 
@@ -42,9 +46,7 @@ namespace GitHubAPITest.Controllers
         /// <returns>The List of Repositories</returns>
         private List<Repository> GetRepoData()
         {
-            string key = System.Web.Configuration.WebConfigurationManager.AppSettings["GitHubAPIKey"];
-            var json = SendRequest("https://api.github.com/user/repos?sort=updated", key, "tiffanyjansen");
-
+            var json = SendRequest("https://api.github.com/user/repos?sort=updated", _key, _username);
             JArray jsonArray = JArray.Parse(json);
 
             List<Repository> repositories = new List<Repository>();
@@ -57,6 +59,13 @@ namespace GitHubAPITest.Controllers
             return repositories;
         }
 
+        /// <summary>
+        /// Copied from Scot
+        /// </summary>
+        /// <param name="uri">The Url</param>
+        /// <param name="credentials">The API Key</param>
+        /// <param name="username">The github username</param>
+        /// <returns>The JSON of the github data</returns>
         private string SendRequest(string uri, string credentials, string username)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
@@ -75,6 +84,37 @@ namespace GitHubAPITest.Controllers
                 stream.Close();
             }
             return jsonString;
+        }
+
+        /// <summary>
+        /// Get all the Commits for the given repo
+        /// </summary>
+        /// <param name="user">owner of the repo</param>
+        /// <param name="repo">repo name</param>
+        /// <returns>json array of commits</returns>
+        public JsonResult Commits(string user, string repo)
+        {
+            string url = "https://api.github.com/repos/" + user + "/" + repo + "/commits";
+
+            var json = SendRequest(url, _key, _username);
+            JArray jsonArray = JArray.Parse(json);
+            object[] commits = new object[jsonArray.Count];
+            for(int i = 0; i < jsonArray.Count; i++)
+            {
+                var data = jsonArray[i];
+                var first_commit = data.Value<JToken>("commit");
+                var committer = first_commit.Value<JToken>("committer");
+                var commit = new
+                {
+                    sha = data.Value<string>("sha"),
+                    committer_name = committer.Value<string>("name"),
+                    timestamp = committer.Value<string>("date"),
+                    message = first_commit.Value<string>("message"),
+                };
+                commits[i] = commit;
+            }
+
+            return Json(commits, JsonRequestBehavior.AllowGet);
         }
     }
 }

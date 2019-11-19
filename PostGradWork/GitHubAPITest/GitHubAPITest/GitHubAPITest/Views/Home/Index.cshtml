@@ -1,5 +1,5 @@
 ﻿@model GitHubAPITest.Models.User
-@{ 
+@{
     ViewBag.Title = "Home";
 }
 <div class="container">
@@ -12,11 +12,11 @@
     </div>
     <div class="row form-group">
         <div class="col-lg-8 offset-lg-2 col-12">
-            <div class="card">               
+            <div class="card">
                 <div class="card-body border border-warning bg-dark">
                     <div class="row">
                         <div class="col-xl-4 offset-xl-0 col-lg-6 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-                            <img src="@Model.ImageLink" alt="Avatar Image" class="image" height="230"/>
+                            <img src="@Model.ImageLink" alt="Avatar Image" class="image" height="230" />
                         </div>
                         <div class="col-xl-8 col-lg-6 col-12">
                             <div class="text-center text-warning">
@@ -37,15 +37,15 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     <div class="row">
-        @foreach(GitHubAPITest.Models.Repository repo in Model.Repositories)
+        @foreach (GitHubAPITest.Models.Repository repo in Model.Repositories)
         {
             <div class="col-md-6 col-12 form-group">
                 <div class="card">
-                    <div class="card-header bg-warning text-center">                     
+                    <div class="card-header bg-warning text-center">
                         <h5><strong>@repo.RepoName</strong></h5>
                     </div>
                     <div class="card-body border border-warning">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-7 col-12">
-                                <dl class="row">                                    
+                                <dl class="row">
                                     <dt class="col-6 text-right">Size: </dt>
                                     <dd class="col-6">@repo.Size</dd>
                                     <dt class="col-6 text-right">Created At: </dt>
@@ -70,7 +70,6 @@
                             </div>
                             <div class="col-md-5 col-12">
                                 <div class="text-center">
-                                    @*<h5>Owner Info:</h5>*@
                                     <img src="@repo.OwnerImage" alt="Avatar Image" class="image" height="115" />
                                 </div>
                                 <dl class="row">
@@ -82,15 +81,20 @@
                         <div class="row">
                             <div class="col-12 text-center">
                                 <a href="@repo.RepoLink" target="_blank">@repo.RepoLink</a>
-                                <img src="~/Content/Images/right-arrow.svg" height="20" class="commit_arrow" />
                             </div>
+                            <img src="~/Content/Images/right-arrow.svg" height="20" class="commit_arrow" onclick="getCommits('@repo.OwnerName', '@repo.RepoName')" />
                         </div>
                     </div>
                 </div>
             </div>
         }
     </div>
-    <div class="row form-group">
-        
+    <div class="row">
+        <div class="col-12 commits text-center"></div>
     </div>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/commits_js.js"></script>
+}
