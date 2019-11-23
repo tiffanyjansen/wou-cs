@@ -14,13 +14,15 @@ function getCommits(user, repo) {
 }
 
 function successAjax(data) {
+    console.log("We made it to success.");
+
     var $div = $('.commits');
     var $table = $('<table class="table"></table>');
     var $thead = $('<thead></thead>');
     var $tr = $('<tr></tr>');
 
     $tr.append('<th class="text-center bg-warning">SHA</th>');
-    $tr.append('<th class="text-center bg-warning">Timestamp</th>');
+    $tr.append('<th class="text-center fixed-width bg-warning">Timestamp</th>');
     $tr.append('<th class="text-center bg-warning">Committer</th>');
     $tr.append('<th class="text-center bg-warning">Commit Message</th>');
 
@@ -28,10 +30,11 @@ function successAjax(data) {
     $table.append($thead);
 
     var $tbody = $('<tbody></tbody>');
+    var $fixedHeight = $('<div class="fixed-height"></div>');
     $.each(data, function (index, value) { //Looping through the data
         var $tr = $('<tr></tr>');        
-        $tr.append('<td class="text-center">' + value.sha + '</td>');
-        $tr.append('<td class="text-center">' + value.timestamp + '</td>');
+        $tr.append('<td class="text-center"><a href=' + value.sha_link + '>' + value.sha + '</a></td>');
+        $tr.append('<td class="text-center fixed-width">' + value.timestamp + '</td>');
         $tr.append('<td class="text-center">' + value.committer_name + '</td>');
         $tr.append('<td class="text-left">' + value.message + '</td>');
         $tbody.append($tr);
@@ -41,6 +44,6 @@ function successAjax(data) {
     $div.append($table);
 }
 
-function errorAjax(data) {
+function errorAjax() {
     console.log("There was an error."); //There was an error... 
 }

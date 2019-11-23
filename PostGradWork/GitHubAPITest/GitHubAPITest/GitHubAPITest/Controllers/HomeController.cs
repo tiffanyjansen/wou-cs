@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -74,16 +75,22 @@ namespace GitHubAPITest.Controllers
             request.Accept = "application/json";
 
             string jsonString = null;
-            // TODO: You should handle exceptions here
-            using (WebResponse response = request.GetResponse())
+            try
             {
-                Stream stream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(stream);
-                jsonString = reader.ReadToEnd();
-                reader.Close();
-                stream.Close();
+                using (WebResponse response = request.GetResponse())
+                {
+                    Stream stream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(stream);
+                    jsonString = reader.ReadToEnd();
+                    reader.Close();
+                    stream.Close();
+                }
+                return jsonString;
             }
-            return jsonString;
+            catch (Exception)
+            {
+                return "";
+            }            
         }
 
         /// <summary>
@@ -94,24 +101,21 @@ namespace GitHubAPITest.Controllers
         /// <returns>json array of commits</returns>
         public JsonResult Commits(string user, string repo)
         {
-            string url = "https://api.github.com/repos/" + user + "/" + repo + "/commits";
-
-            var json = SendRequest(url, _key, _username);
+            var json = SendRequest($"https://api.github.com/repos/{user}/{repo}/commits?per_page={int.MaxValue}", _key, _username);
             JArray jsonArray = JArray.Parse(json);
-            object[] commits = new object[jsonArray.Count];
-            for(int i = 0; i < jsonArray.Count; i++)
+            List<object> commits = new List<object>();
+            
+            foreach (var data in jsonArray)
             {
-                var data = jsonArray[i];
-                var first_commit = data.Value<JToken>("commit");
-                var committer = first_commit.Value<JToken>("committer");
                 var commit = new
                 {
-                    sha = data.Value<string>("sha"),
-                    committer_name = committer.Value<string>("name"),
-                    timestamp = committer.Value<string>("date"),
-                    message = first_commit.Value<string>("message"),
+                    sha = ((string)data["sha"]).Substring(0, 8),
+                    sha_link = (string)data["html_url"],
+                    committer_name = (string)data["commit"]["committer"]["name"],
+                    timestamp = ((DateTime)data["commit"]["committer"]["date"]).ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                    message = (string)data["commit"]["message"],
                 };
-                commits[i] = commit;
+                commits.Add(commit);
             }
 
             return Json(commits, JsonRequestBehavior.AllowGet);
